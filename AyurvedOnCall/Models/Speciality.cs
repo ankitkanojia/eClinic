@@ -12,18 +12,21 @@ namespace AyurvedOnCall.Models
     using System;
     using System.Collections.Generic;
     
-    public partial class DiscountType
+    public partial class Speciality
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public DiscountType()
+        public Speciality()
         {
-            this.Offers = new HashSet<Offer>();
+            this.Diseases = new HashSet<Disease>();
+            this.Doctors = new HashSet<Doctor>();
         }
     
-        public long DiscountId { get; set; }
-        public string Type { get; set; }
+        public long SpecialityId { get; set; }
+        public string Name { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Offer> Offers { get; set; }
+        public virtual ICollection<Disease> Diseases { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Doctor> Doctors { get; set; }
     }
 }

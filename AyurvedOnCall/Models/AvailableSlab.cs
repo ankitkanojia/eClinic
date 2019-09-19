@@ -12,13 +12,15 @@ namespace AyurvedOnCall.Models
     using System;
     using System.Collections.Generic;
     
-    public partial class ProductImage
+    public partial class AvailableSlab
     {
-        public long ProductImageId { get; set; }
-        public long ProductId { get; set; }
-        public string ImageName { get; set; }
-        public bool CoverImage { get; set; }
+        public long AvailableSlabId { get; set; }
+        public long DoctorId { get; set; }
+        public bool IsAllDay { get; set; }
+        public string StartTime { get; set; }
+        public string EndTime { get; set; }
+        public System.DateTime CreatedDate { get; set; }
     
-        public virtual Product Product { get; set; }
+        public virtual Doctor Doctor { get; set; }
     }
 }

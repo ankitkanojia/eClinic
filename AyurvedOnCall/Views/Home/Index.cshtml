@@ -1,31 +1,979 @@
-﻿@{
+﻿@model HomeVm
+@using Newtonsoft.Json;
+@{
+    /**/
+
     ViewBag.Title = "Home Page";
+    var mapJsonObject = JsonConvert.SerializeObject(Model.MapCollection);
 }
 
-<div class="jumbotron">
-    <h1>ASP.NET</h1>
-    <p class="lead">ASP.NET is a free web framework for building great Web sites and Web applications using HTML, CSS and JavaScript.</p>
-    <p><a href="https://asp.net" class="btn btn-primary btn-lg">Learn more &raquo;</a></p>
+<style>
+    .multiselect-container > li {
+        padding: 5px !important;
+        border-bottom: #eee 1px solid;
+    }
+</style>
+
+@Html.HiddenFor(s => s.IsFocus)
+
+<div class="main-content">
+    <!-- Section: home -->
+    <section id="home" class="divider">
+        <div class="container-fluid p-0">
+
+            <!-- Slider Revolution Start -->
+            <div class="rev_slider_wrapper">
+                <div class="rev_slider" data-version="5.0">
+                    <ul>
+
+                        <!-- SLIDE 1 -->
+                        <li data-index="rs-1" data-transition="random" data-slotamount="7" data-easein="default" data-easeout="default" data-masterspeed="1000" data-thumb="~/Content/Client/images/bg/bg2.jpg" data-rotate="0" data-fstransition="fade" data-fsmasterspeed="1500" data-fsslotamount="7" data-saveperformance="off" data-title="Intro" data-description="">
+                            <!-- MAIN IMAGE -->
+                            <img src="~/Images/ayurveda/l2.jpg" alt="" data-bgposition="center top" data-bgfit="cover" data-bgrepeat="no-repeat" class="rev-slidebg" data-bgparallax="6" data-no-retina>
+                            <!-- LAYERS -->
+                            <!-- LAYER NR. 1 -->
+                            <div class="tp-caption tp-resizeme text-uppercase text-white font-raleway bg-dark-transparent-light pl-30 pr-30"
+                                 id="rs-1-layer-1"
+                                 data-x="['center']"
+                                 data-hoffset="['0']"
+                                 data-y="['middle']"
+                                 data-voffset="['-115']"
+                                 data-fontsize="['22']"
+                                 data-lineheight="['50']"
+                                 data-width="none"
+                                 data-height="none"
+                                 data-whitespace="nowrap"
+                                 data-transform_idle="o:1;s:500"
+                                 data-transform_in="y:100;scaleX:1;scaleY:1;opacity:0;"
+                                 data-transform_out="x:left(R);s:1000;e:Power3.easeIn;s:1000;e:Power3.easeIn;"
+                                 data-mask_in="x:0px;y:0px;s:inherit;e:inherit;"
+                                 data-mask_out="x:inherit;y:inherit;s:inherit;e:inherit;"
+                                 data-start="1000"
+                                 data-splitin="none"
+                                 data-splitout="none"
+                                 data-responsive_offset="on"
+                                 style="z-index: 7; white-space: nowrap; font-weight:600; border-radius:45px;">
+                                Our vision is to enable everyone to have access to
+                            </div>
+
+                            <!-- LAYER NR. 2 -->
+                            <div class="tp-caption tp-resizeme text-uppercase text-white font-raleway bg-theme-colored-transparent pl-40 pr-40"
+                                 id="rs-1-layer-2"
+                                 data-x="['center']"
+                                 data-hoffset="['0']"
+                                 data-y="['middle']"
+                                 data-voffset="['-45']"
+                                 data-fontsize="['28']"
+                                 data-lineheight="['70']"
+                                 data-width="none"
+                                 data-height="none"
+                                 data-whitespace="nowrap"
+                                 data-transform_idle="o:1;s:500"
+                                 data-transform_in="y:100;scaleX:1;scaleY:1;opacity:0;"
+                                 data-transform_out="x:left(R);s:1000;e:Power3.easeIn;s:1000;e:Power3.easeIn;"
+                                 data-mask_in="x:0px;y:0px;s:inherit;e:inherit;"
+                                 data-mask_out="x:inherit;y:inherit;s:inherit;e:inherit;"
+                                 data-start="1000"
+                                 data-splitin="none"
+                                 data-splitout="none"
+                                 data-responsive_offset="on"
+                                 style="z-index: 7; white-space: nowrap;  font-weight:600; border-radius:45px;">
+                                to High-quality Healthcare anytime, anywhere.
+                            </div>
+
+
+                        </li>
+
+                        <!-- SLIDE 2 -->
+                        <li data-index="rs-2" data-transition="random" data-slotamount="7" data-easein="default" data-easeout="default" data-masterspeed="1000" data-thumb="~/Content/Client/images/bg/bg1.jpg" data-rotate="0" data-fstransition="fade" data-fsmasterspeed="1500" data-fsslotamount="7" data-saveperformance="off" data-title="Intro" data-description="">
+                            <!-- MAIN IMAGE -->
+                            <img src="~/Images/ayurveda/l3.jpg" alt="" data-bgposition="center center" data-bgfit="cover" data-bgrepeat="no-repeat" class="rev-slidebg" data-bgparallax="6" data-no-retina>
+                            <!-- LAYERS -->
+                            <!-- LAYER NR. 1 -->
+                            <div class="tp-caption tp-resizeme text-uppercase text-white font-raleway bg-dark-transparent-light pl-15 pr-15"
+                                 id="rs-2-layer-1"
+                                 data-x="['left']"
+                                 data-hoffset="['30']"
+                                 data-y="['middle']"
+                                 data-voffset="['-110']"
+                                 data-fontsize="['22']"
+                                 data-lineheight="['50']"
+                                 data-width="none"
+                                 data-height="none"
+                                 data-whitespace="nowrap"
+                                 data-transform_idle="o:1;s:500"
+                                 data-transform_in="y:100;scaleX:1;scaleY:1;opacity:0;"
+                                 data-transform_out="x:left(R);s:1000;e:Power3.easeIn;s:1000;e:Power3.easeIn;"
+                                 data-mask_in="x:0px;y:0px;s:inherit;e:inherit;"
+                                 data-mask_out="x:inherit;y:inherit;s:inherit;e:inherit;"
+                                 data-start="1000"
+                                 data-splitin="none"
+                                 data-splitout="none"
+                                 data-responsive_offset="on"
+                                 style="z-index: 7; white-space: nowrap; font-weight:600;">
+                                Our vision is to enable everyone to have access to
+                            </div>
+
+                            <!-- LAYER NR. 2 -->
+                            <div class="tp-caption tp-resizeme text-uppercase text-white font-raleway bg-theme-colored-transparent pl-15 pr-15"
+                                 id="rs-2-layer-2"
+                                 data-x="['left']"
+                                 data-hoffset="['30']"
+                                 data-y="['middle']"
+                                 data-voffset="['-45']"
+                                 data-fontsize="['28']"
+                                 data-lineheight="['70']"
+                                 data-width="none"
+                                 data-height="none"
+                                 data-whitespace="nowrap"
+                                 data-transform_idle="o:1;s:500"
+                                 data-transform_in="y:100;scaleX:1;scaleY:1;opacity:0;"
+                                 data-transform_out="x:left(R);s:1000;e:Power3.easeIn;s:1000;e:Power3.easeIn;"
+                                 data-mask_in="x:0px;y:0px;s:inherit;e:inherit;"
+                                 data-mask_out="x:inherit;y:inherit;s:inherit;e:inherit;"
+                                 data-start="1000"
+                                 data-splitin="none"
+                                 data-splitout="none"
+                                 data-responsive_offset="on"
+                                 style="z-index: 7; white-space: nowrap; font-weight:600;">
+                                to High-quality Healthcare anytime, anywhere.
+                            </div>
+
+
+                        </li>
+
+                        <!-- SLIDE 3 -->
+                        <li data-index="rs-3" data-transition="random" data-slotamount="7" data-easein="default" data-easeout="default" data-masterspeed="1000" data-thumb="~/Content/Client/images/bg/bg3.jpg" data-rotate="0" data-fstransition="fade" data-fsmasterspeed="1500" data-fsslotamount="7" data-saveperformance="off" data-title="Intro" data-description="">
+                            <!-- MAIN IMAGE -->
+                            <img src="~/Images/ayurveda/l4.jpg" alt="" data-bgposition="center top" data-bgfit="cover" data-bgrepeat="no-repeat" class="rev-slidebg" data-bgparallax="6" data-no-retina>
+                            <!-- LAYERS -->
+                            <!-- LAYER NR. 1 -->
+                            <div class="tp-caption tp-resizeme text-uppercase text-white font-raleway bg-dark-transparent-light pl-15 pr-15"
+                                 id="rs-3-layer-1"
+                                 data-x="['right']"
+                                 data-hoffset="['30']"
+                                 data-y="['middle']"
+                                 data-voffset="['-110']"
+                                 data-fontsize="['22']"
+                                 data-lineheight="['50']"
+                                 data-width="none"
+                                 data-height="none"
+                                 data-whitespace="nowrap"
+                                 data-transform_idle="o:1;s:500"
+                                 data-transform_in="y:100;scaleX:1;scaleY:1;opacity:0;"
+                                 data-transform_out="x:left(R);s:1000;e:Power3.easeIn;s:1000;e:Power3.easeIn;"
+                                 data-mask_in="x:0px;y:0px;s:inherit;e:inherit;"
+                                 data-mask_out="x:inherit;y:inherit;s:inherit;e:inherit;"
+                                 data-start="1000"
+                                 data-splitin="none"
+                                 data-splitout="none"
+                                 data-responsive_offset="on"
+                                 style="z-index: 7; white-space: nowrap; font-weight:600;">
+                                Our vision is to enable everyone to have access to
+                            </div>
+
+                            <!-- LAYER NR. 2 -->
+                            <div class="tp-caption tp-resizeme text-uppercase text-white font-raleway bg-theme-colored-transparent pl-15 pr-15"
+                                 id="rs-3-layer-2"
+                                 data-x="['right']"
+                                 data-hoffset="['30']"
+                                 data-y="['middle']"
+                                 data-voffset="['-45']"
+                                 data-fontsize="['28']"
+                                 data-lineheight="['70']"
+                                 data-width="none"
+                                 data-height="none"
+                                 data-whitespace="nowrap"
+                                 data-transform_idle="o:1;s:500"
+                                 data-transform_in="y:100;scaleX:1;scaleY:1;opacity:0;"
+                                 data-transform_out="x:left(R);s:1000;e:Power3.easeIn;s:1000;e:Power3.easeIn;"
+                                 data-mask_in="x:0px;y:0px;s:inherit;e:inherit;"
+                                 data-mask_out="x:inherit;y:inherit;s:inherit;e:inherit;"
+                                 data-start="1000"
+                                 data-splitin="none"
+                                 data-splitout="none"
+                                 data-responsive_offset="on"
+                                 style="z-index: 7; white-space: nowrap; font-weight:600;">
+                                to High-quality Healthcare anytime, anywhere.
+                            </div>
+
+
+                        </li>
+                    </ul>
+                </div><!-- end .rev_slider -->
+            </div>
+            <!-- end .rev_slider_wrapper -->
+            <script>
+                $(document).ready(function (e) {
+                    var revapi = $(".rev_slider").revolution({
+                        sliderType: "standard",
+                        sliderLayout: "auto",
+                        dottedOverlay: "none",
+                        delay: 5000,
+                        navigation: {
+                            keyboardNavigation: "off",
+                            keyboard_direction: "horizontal",
+                            mouseScrollNavigation: "off",
+                            onHoverStop: "off",
+                            touch: {
+                                touchenabled: "on",
+                                swipe_threshold: 75,
+                                swipe_min_touches: 1,
+                                swipe_direction: "horizontal",
+                                drag_block_vertical: false
+                            },
+                            arrows: {
+                                style: "gyges",
+                                enable: true,
+                                hide_onmobile: false,
+                                hide_onleave: true,
+                                hide_delay: 200,
+                                hide_delay_mobile: 1200,
+                                tmp: '',
+                                left: {
+                                    h_align: "left",
+                                    v_align: "center",
+                                    h_offset: 0,
+                                    v_offset: 0
+                                },
+                                right: {
+                                    h_align: "right",
+                                    v_align: "center",
+                                    h_offset: 0,
+                                    v_offset: 0
+                                }
+                            },
+                            bullets: {
+                                enable: true,
+                                hide_onmobile: true,
+                                hide_under: 800,
+                                style: "hebe",
+                                hide_onleave: false,
+                                direction: "horizontal",
+                                h_align: "center",
+                                v_align: "bottom",
+                                h_offset: 0,
+                                v_offset: 30,
+                                space: 5,
+                                tmp: '<span class="tp-bullet-image"></span><span class="tp-bullet-imageoverlay"></span><span class="tp-bullet-title"></span>'
+                            }
+                        },
+                        responsiveLevels: [1240, 1024, 778],
+                        visibilityLevels: [1240, 1024, 778],
+                        gridwidth: [1170, 1024, 778, 480],
+                        gridheight: [655, 768, 960, 720],
+                        lazyType: "none",
+                        parallax: {
+                            origo: "slidercenter",
+                            speed: 1000,
+                            levels: [5, 10, 15, 20, 25, 30, 35, 40, 45, 46, 47, 48, 49, 50, 100, 55],
+                            type: "scroll"
+                        },
+                        shadow: 0,
+                        spinner: "off",
+                        stopLoop: "on",
+                        stopAfterLoops: 0,
+                        stopAtSlide: -1,
+                        shuffle: "off",
+                        autoHeight: "off",
+                        fullScreenAutoWidth: "off",
+                        fullScreenAlignForce: "off",
+                        fullScreenOffsetContainer: "",
+                        fullScreenOffset: "0",
+                        hideThumbsOnMobile: "off",
+                        hideSliderAtLimit: 0,
+                        hideCaptionAtLimit: 0,
+                        hideAllCaptionAtLilmit: 0,
+                        debugMode: false,
+                        fallbacks: {
+                            simplifyAll: "off",
+                            nextSlideOnWindowFocus: "off",
+                            disableFocusListener: false,
+                        }
+                    });
+                });
+            </script>
+            <!-- Slider Revolution Ends -->
+
+        </div>
+    </section>
+
+    <!-- Section: Welcome -->
+    <section id="sectionFilter">
+        <div class="container pb-0">
+            <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-multiselect/0.9.15/css/bootstrap-multiselect.css" type="text/css">
+            <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-multiselect/0.9.15/js/bootstrap-multiselect.js"></script>
+
+            <script type="text/javascript">
+                $(document).ready(function () {
+                    $('#DiseasesIds').multiselect();
+                    $('#SpeacialityIds').multiselect();
+                });
+
+            </script>
+
+            <style>
+                .multiselect {
+                    border-radius: 0;
+                    box-shadow: none;
+                    height: 45px;
+                    display: block;
+                    width: 257px;
+                    padding: 6px 12px;
+                    font-size: 14px;
+                    line-height: 1.42857143;
+                    color: #555;
+                    background-color: #fff;
+                    background-image: none;
+                    border: 1px solid #ccc;
+                }
+            </style>
+
+
+            @using (Html.BeginForm("Index", "Home", FormMethod.Post, new { id = "frmSearch", @class = "clearfix" }))
+            {
+                <div class="call-to-action border-5px wow fadeInLeft animation-delay4" style="padding: 16px 16px 0 16px">
+                    <div class="row">
+                        <div class="col-md-4">
+                            <div class="form-group">
+                                <label>Doctor name</label>
+                                @Html.TextBoxFor(s => s.DoctorName, new { placeholder = "Doctor Name", @class = "form-control" })
+                            </div>
+                        </div>
+                        <div class="col-md-3">
+                            <label>Select multiple diseases</label>
+                            <select name="DiseasesIds" id="DiseasesIds" class="form-control" multiple="multiple">
+                                @{
+                                    var diseases = CommonFunctions.GetDiseasesDropdownData();
+
+                                    var i = 0;
+
+                                    foreach (var item in diseases)
+                                    {
+                                        if (i == 0)
+                                        {
+                                            <option disabled>@item.Text</option>
+                                        }
+                                        else
+                                        {
+                                            if (Model.DiseasesIds != null && Model.DiseasesIds.Any() && Model.DiseasesIds.Contains(item.Value))
+                                            {
+                                                <option value="@item.Value" selected>@item.Text</option>
+                                            }
+                                            else
+                                            {
+                                                <option value="@item.Value">@item.Text</option>
+                                            }
+                                        }
+
+
+                                        i = i + 1;
+                                    }
+                                }
+                            </select>
+                        </div>
+                        <div class="col-md-3">
+                            <label>Select multiple speaciality</label>
+                            <select name="SpeacialityIds" id="SpeacialityIds" class="form-control" multiple="multiple">
+                                @{
+                                    var speciality = CommonFunctions.GetSpecialityDropdownData();
+
+                                    var k = 0;
+
+                                    foreach (var item in speciality)
+                                    {
+                                        if (k == 0)
+                                        {
+                                            <option disabled>@item.Text</option>
+                                        }
+                                        else
+                                        {
+                                            if (Model.SpeacialityIds != null && Model.SpeacialityIds.Any() && Model.SpeacialityIds.Contains(item.Value))
+                                            {
+                                                <option value="@item.Value" selected>@item.Text</option>
+                                            }
+                                            else
+                                            {
+                                                <option value="@item.Value">@item.Text</option>
+                                            }
+                                        }
+
+                                        k = k + 1;
+                                    }
+                                }
+                            </select>
+                        </div>
+                        <div class="col-md-2">
+                            <label>&nbsp;</label>
+                            <button type="submit" class="btn btn-info btn-lg btn-block no-border" style="margin-top:3px">Filter data</button>
+                        </div>
+                    </div>
+                </div>
+            }
+
+            <div class="row">
+                <div class="col-md-4 wow fadeInLeft animation-delay4">
+                    <div class="border-10px" style="padding: 0 20px 20px 20px; height: 365px">
+                        <div class="row">
+                            @*<div class="col-md-6">
+                                    <h5><i class="icon-medical51 text-theme-colored"></i> Doctor(s) </h5>
+                                </div>*@
+                            <div class="col-md-12">
+                                <h5 class="text-center">
+                                    <a href="javascript:void(0)" onclick="NearBy()" class="text-danger text-center">
+                                        <i class="fa fa-search"></i> Search near by doctors
+                                    </a>
+                                </h5>
+                                <div class="separator" style="margin: 5px !important">
+                                    <i class="fa fa-cog fa-spin"></i>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="clearfix"></div>
+
+                        <div class="opening-hourse text-left">
+                            <ul id="customDoctor" class="list-unstyled" style="min-height: 260px; max-height: 260px; overflow-y: auto;">
+                                @if (Model != null && Model.MapCollection != null && Model.MapCollection.Any())
+                                {
+
+                                    foreach (var item in Model.MapCollection)
+                                    {
+                                        <li class="clearfix line-height-1" data-docname="@item.Name" data-profession="@item.Speciality">
+                                            <span>
+                                                <a class="text-danger" href="@Url.Action("Appointment", "Patient", new {id = item.DoctorId})">
+                                                    <i class="fa fa-external-link" aria-hidden="true"></i> &nbsp;
+                                                </a>
+                                                @item.Name
+                                            </span>
+                                            <div class="value" style="padding-right: 1em;">
+                                                <i class="fa fa-stethoscope text-theme-colored"></i> @item.Speciality
+                                            </div>
+                                        </li>
+                                    }
+
+
+                                }
+                            </ul>
+                        </div>
+
+
+                    </div>
+                </div>
+                <div class="col-md-8 wow fadeInUp animation-delay4" style="margin-bottom: 5%">
+                    @Html.Hidden("mapObject", mapJsonObject)
+                    <div id="dvMap" style="width: 100%; height: 365px"></div>
+                </div>
+            </div>
+        </div>
+        <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAlDR9mt7M9AIWan51rLETsEsp07wwADDk&libraries=geometry"></script>
+        <script type="text/javascript">
+
+
+            var locations = JSON.parse($("#mapObject").val());
+
+            function initialize() {
+                var LatLng = new google.maps.LatLng('22.311595', '73.165528');
+                var mapOptions = {
+                    center: LatLng,
+                    zoom: 13,
+                    mapTypeId: google.maps.MapTypeId.ROADMAP
+                };
+
+                var map = new google.maps.Map(document.getElementById("dvMap"), mapOptions);
+                var marker = new google.maps.Marker({
+                    position: LatLng,
+                    map: map,
+                    icon: '../../Images/mapicon/user.png'
+                });
+
+                var infowindow = new google.maps.InfoWindow();
+                var i;
+
+                for (i = 0; i < locations.length; i++) {
+                    marker = new google.maps.Marker({
+                        position: new google.maps.LatLng(locations[i].Lat, locations[i].Long),
+                        map: map,
+                        icon: '../../Images/mapicon/medic.png'
+                    });
+
+                    google.maps.event.addListener(marker, 'click', (function (marker, i) {
+                        return function () {
+                            infowindow.setContent('<form method="get" action="/Patient/Appointment/' + locations[i].DoctorId + '"> <p style="font-family: \'Open Sans\', sans-serif"><i class="fa fa-user-md text-theme-colored"></i> <b>Name</b>: ' + locations[i].Name + '</p>' +
+                                '<p style="font-family: \'Open Sans\', sans-serif"><i class="fa fa-stethoscope text-theme-colored"></i> <b>Speciality</b>: ' + locations[i].Speciality + '</p>' +
+                                '</form>');
+                            //infowindow.setContent(locations[i].Name);
+                            infowindow.open(map, marker);
+                        }
+                    })(marker, i));
+
+                    google.maps.event.addListener(marker, 'mouseover', (function (marker, i) {
+                        return function () {
+                            infowindow.setContent('<form method="get" action="/Patient/Appointment/' + locations[i].DoctorId + '"> <p style="font-family: \'Open Sans\', sans-serif"><i class="fa fa-user-md text-theme-colored"></i> <b>Name</b>: ' + locations[i].Name + '</p>' +
+                                '<p style="font-family: \'Open Sans\', sans-serif"><i class="fa fa-stethoscope text-theme-colored"></i> <b>Speciality</b>: ' + locations[i].Speciality + '</p>' +
+                                '</form>');
+                            //infowindow.setContent(locations[i].Name);
+                            infowindow.open(map, marker);
+                        }
+                    })(marker, i));
+
+                    google.maps.event.addListener(marker, 'mouseout', (function (marker, i) {
+                        return function () {
+                            infowindow.close();
+                        }
+                    })(marker, i));
+                }
+            }
+
+            google.maps.event.addDomListener(window, "load", initialize);
+
+            var NearBy = function () {
+                if (navigator.geolocation) {
+                    navigator.geolocation.getCurrentPosition(function (p) {
+                        console.log(p);
+                        var LatLng = new google.maps.LatLng(p.coords.latitude, p.coords.longitude);
+                        var mapOptions = {
+                            center: LatLng,
+                            zoom: 13,
+                            mapTypeId: google.maps.MapTypeId.ROADMAP
+                        };
+
+                        var map = new google.maps.Map(document.getElementById("dvMap"), mapOptions);
+                        var marker = new google.maps.Marker({
+                            position: LatLng,
+                            map: map,
+                            icon: '../../Images/mapicon/user.png'
+                        });
+
+                        var infowindow = new google.maps.InfoWindow();
+                        var i;
+
+                        for (i = 0; i < locations.length; i++) {
+
+                            var distance = google.maps.geometry.spherical.computeDistanceBetween(new google.maps.LatLng(p.coords.latitude, p.coords.longitude), new google.maps.LatLng(locations[i].Lat, locations[i].Long));
+                            console.log(distance);
+                            if (distance < 5000) {
+                                //Distance -- 1000 == 1 KM
+                                marker = new google.maps.Marker({
+                                    position: new google.maps.LatLng(locations[i].Lat, locations[i].Long),
+                                    icon: '../../Images/mapicon/medic.png',
+                                    map: map
+                                });
+
+                                google.maps.event.addListener(marker, 'click', (function (marker, i) {
+                                    return function () {
+                                        infowindow.setContent('<form method="get" action="/Patient/Appointment/' + locations[i].DoctorId + '"> <p style="font-family: \'Open Sans\', sans-serif"><i class="fa fa-user-md text-theme-colored"></i> <b>Name</b>: ' + locations[i].Name + '</p>' +
+                                            '<p style="font-family: \'Open Sans\', sans-serif"><i class="fa fa-stethoscope text-theme-colored"></i> <b>Speciality</b>: ' + locations[i].Speciality + '</p>' +
+                                            '</form>');
+                                        //infowindow.setContent(locations[i].Name);
+                                        infowindow.open(map, marker);
+                                    }
+                                })(marker, i));
+
+                                google.maps.event.addListener(marker, 'mouseout', (function (marker, i) {
+                                    return function () {
+                                        infowindow.close();
+                                    }
+                                })(marker, i));
+
+                            } else {
+                                $("#customDoctor").find("li").each(function (e, element) {
+                                    if ($(this).attr("data-docname").toLowerCase() == locations[i].Name.toLowerCase() && $(this).attr("data-profession").toLowerCase() == locations[i].Speciality.toLowerCase()) {
+                                        $(this).remove();
+                                    }
+                                });
+                            }
+                        }
+
+                        //<button class="btn btn-dark btn-theme-colored mt-15" type="submit">Contact Dr.</button>
+                    });
+                } else {
+                    alert('Geo Location feature is not supported in this browser.');
+                }
+            };
+
+            var CallDoctor = function (id) {
+                $.get("demo_test.asp", function (data, status) {
+                    alert("Data: " + data + "\nStatus: " + status);
+                });
+            };
+
+            var showError = function (error) {
+                console.log("ss");
+                initialize();
+            };
+        </script>
+    </section>
+
+    <!-- Section: Services -->
+    <!-- Section: Specialities -->
+    <section data-bg-img="~/Content/Client/images/pattern/p4.png">
+        <div class="container pb-80">
+            <div class="section-title text-center">
+                <div class="row">
+                    <div class="col-md-8 col-md-offset-2">
+                        <h2 class="text-uppercase mt-0">Our Specialities</h2>
+                        <div class="title-icon">
+                            <img class="mb-10" src="~/Content/Client/images/title-icon.png" alt="">
+                        </div>
+                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Rem autem<br> voluptatem obcaecati!</p>
+                    </div>
+                </div>
+            </div>
+            <div class="section-centent">
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="services-tab border-10px bg-white-light">
+                            <ul class="nav nav-tabs">
+                                <li class="active"><a href="#tab11" data-toggle="tab"><i class="icon-xray2"></i>PANCHKARMA</a></li>
+                                <li><a href="#tab12" data-toggle="tab"><i class="icon-heart36"></i>GARBH SANSKAR </a></li>
+                                <li><a href="#tab13" data-toggle="tab"><i class="icon-brain9"></i>NETRA TARPAN </a></li>
+                                <li><a href="#tab14" data-toggle="tab"><i class="icon-teeth1"></i>AGNI KARMA</a></li>
+
+                            </ul>
+                            <style>
+                                .services-tab .nav-tabs > li {
+                                    width: 25%;
+                                }
+                            </style>
+                            <div class="tab-content">
+                                <div class="tab-pane fade in active" id="tab11">
+                                    <div class="row">
+                                        <div class="col-md-5">
+                                            <div class="thumb">
+                                                <img class="img-fullwidth" src="~/Content/panchkarma.jpg" alt="">
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="service-content">
+                                                <h3 class="sub-title mb-0 mt-30">Services</h3>
+                                                <h1 class="title mt-0">PANCHKARMA</h1>
+                                                <p>
+                                                    Panchkarma is time tested detoxification and cleansing process to be useful in chronic disorders along with prevention. It is given under guidance of the Ayurved Doctor.
+                                                </p>
+                                                <div class="row mt-30 mb-20">
+                                                    <div class="col-xs-6">
+                                                        <ul class="mt-10">
+                                                            <li class="mb-10"><i class="fa fa-angle-double-right text-theme-colored font-15"></i>&emsp;Vaman</li>
+                                                            <li class="mb-10"><i class="fa fa-angle-double-right text-theme-colored font-15"></i>&emsp;Nasya</li>
+                                                            <li class="mb-10"><i class="fa fa-angle-double-right text-theme-colored font-15"></i>&emsp;Janu basti</li>
+                                                        </ul>
+                                                    </div>
+                                                    <div class="col-xs-6">
+                                                        <ul class="mt-10">
+                                                            <li class="mb-10"><i class="fa fa-angle-double-right text-theme-colored font-15"></i>&emsp;Virechan</li>
+                                                            <li class="mb-10"><i class="fa fa-angle-double-right text-theme-colored font-15"></i>&emsp;Shirodhara</li>
+                                                            <li class="mb-10"><i class="fa fa-angle-double-right text-theme-colored font-15"></i>&emsp;Basti</li>
+                                                        </ul>
+                                                    </div>
+                                                </div>
+
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="tab-pane fade" id="tab12">
+                                    <div class="row">
+                                        <div class="col-md-5">
+                                            <div class="thumb">
+                                                <img class="img-fullwidth" src="~/Content/GARBHSANSKAR.png" alt="">
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="service-content">
+                                                <h3 class="sub-title mb-0 mt-30">Services</h3>
+                                                <h1 class="title mt-0">GARBH SANSKAR</h1>
+                                                <p>
+                                                    Garbh Sanskar is an ancient sacred Ayurvedic method that helps you obtain desired child and having good result in “Idiopathic Infertility”. With a specific idea of your child, We can help you to bring healthy baby through this method.
+                                                </p>
+
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="tab-pane fade" id="tab13">
+                                    <div class="row">
+                                        <div class="col-md-5">
+                                            <div class="thumb">
+                                                <img class="img-fullwidth" src="~/Content/NETRATARPAN.jpg" alt="">
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="service-content">
+                                                <h3 class="sub-title mb-0 mt-30">Services</h3>
+                                                <h1 class="title mt-0">NETRA TARPAN</h1>
+                                                <p>
+                                                    Netra implies eye and Tarpan implies offering quality to the eyes. The cured ghee is poured over the eyelids in a fenced in area worked around the eye out of wheat flour. It is said to be a fantastic treatment to enhance vision and clearness of the psyche.
+                                                    <br /><br />  This treatment means to give ideal revival to eyes. Mixture of Urad (dark gram) is put around the eye ball such that a dam like appearance is seen. At that point home grown mending ghee (illuminated margarine) is placed in this section to grease up the eye and encompassing zones which will be kept warm for 30 – 35 minutes. This furnishes enhanced vision with lovely eyes and fortifying of eye tissues.
+
+                                                </p>
+
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="tab-pane fade" id="tab14">
+                                    <div class="row">
+                                        <div class="col-md-5">
+                                            <div class="thumb">
+                                                <img class="img-fullwidth" src="~/Content/AGNIKARMA.jpg" alt="">
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="service-content">
+                                                <h3 class="sub-title mb-0 mt-30">Services</h3>
+                                                <h1 class="title mt-0">AGNI KARMA</h1>
+                                                <p>
+                                                    Acharya Sushruta has invented this Medical technique.
+                                                    <br />
+                                                    Agni Karma means thermal cautery.It gives instant relif from pain by balancing Vata & Kapha dosha
+
+                                                </p>
+
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Section: Doctors -->
+    <!-- Section: Pricing -->
+    <!-- Section: Form And Testimonials -->
+    <!-- Section: Gallery -->
+    @*<section class="bg-lighter">
+            <div class="container pb-0">
+                <div class="section-title text-center">
+                    <div class="row">
+                        <div class="col-md-8 col-md-offset-2">
+                            <h2 class="text-uppercase mt-0">Gallery</h2>
+                            <div class="title-icon">
+                                <img class="mb-10" src="~/Content/Client/images/title-icon.png" alt="">
+                            </div>
+                            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Rem autem<br> voluptatem obcaecati!</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-12">
+                        <!-- Works Filter -->
+                        <div class="portfolio-filter font-alt align-center">
+                            <a href="#" class="active" data-filter="*">All</a>
+                            <a href="#dental" class="" data-filter=".dental">Dental</a>
+                            <a href="#surgery" class="" data-filter=".surgery">Surgery</a>
+                            <a href="#laboratory" class="" data-filter=".laboratory">Laboratory</a>
+                        </div>
+                        <!-- End Works Filter -->
+                        <!-- Portfolio Gallery Grid -->
+                        <div id="grid" class="gallery-isotope grid-4 gutter clearfix">
+                            <!-- Portfolio Item Start -->
+                            <div class="gallery-item dental">
+                                <div class="thumb">
+                                    <img class="img-fullwidth" src="~/Content/Client/images/portfolio/1.jpg" alt="project">
+                                    <div class="overlay-shade"></div>
+                                    <div class="icons-holder">
+                                        <div class="icons-holder-inner">
+                                            <div class="social-icons icon-sm icon-dark icon-circled icon-theme-colored">
+                                                <a data-lightbox="image" href="~/Content/Client/images/portfolio/1.jpg"><i class="fa fa-picture-o"></i></a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- Portfolio Item End -->
+                            <!-- Portfolio Item Start -->
+                            <div class="gallery-item photography">
+                                <div class="thumb">
+                                    <img class="img-fullwidth" src="~/Content/Client/images/portfolio/2.jpg" alt="project">
+                                    <div class="overlay-shade"></div>
+                                    <div class="icons-holder">
+                                        <div class="icons-holder-inner">
+                                            <div class="social-icons icon-sm icon-dark icon-circled icon-theme-colored">
+                                                <a data-lightbox="image" href="~/Content/Client/images/portfolio/2.jpg"><i class="fa fa-picture-o"></i></a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- Portfolio Item End -->
+                            <!-- Portfolio Item Start -->
+                            <div class="gallery-item photography">
+                                <div class="thumb">
+                                    <img class="img-fullwidth" src="~/Content/Client/images/portfolio/3.jpg" alt="project">
+                                    <div class="overlay-shade"></div>
+                                    <div class="icons-holder">
+                                        <div class="icons-holder-inner">
+                                            <div class="social-icons icon-sm icon-dark icon-circled icon-theme-colored">
+                                                <a data-lightbox="image" href="~/Content/Client/images/portfolio/3.jpg"><i class="fa fa-picture-o"></i></a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- Portfolio Item End -->
+                            <!-- Portfolio Item Start -->
+                            <div class="gallery-item photography">
+                                <div class="thumb">
+                                    <img class="img-fullwidth" src="~/Content/Client/images/portfolio/4.jpg" alt="project">
+                                    <div class="overlay-shade"></div>
+                                    <div class="icons-holder">
+                                        <div class="icons-holder-inner">
+                                            <div class="social-icons icon-sm icon-dark icon-circled icon-theme-colored">
+                                                <a data-lightbox="image" href="~/Content/Client/images/portfolio/4.jpg"><i class="fa fa-picture-o"></i></a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- Portfolio Item End -->
+                            <!-- Portfolio Item Start -->
+                            <div class="gallery-item surgery">
+                                <div class="thumb">
+                                    <img class="img-fullwidth" src="~/Content/Client/images/portfolio/5.jpg" alt="project">
+                                    <div class="overlay-shade"></div>
+                                    <div class="icons-holder">
+                                        <div class="icons-holder-inner">
+                                            <div class="social-icons icon-sm icon-dark icon-circled icon-theme-colored">
+                                                <a data-lightbox="image" href="~/Content/Client/images/portfolio/5.jpg"><i class="fa fa-picture-o"></i></a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- Portfolio Item End -->
+                            <!-- Portfolio Item Start -->
+                            <div class="gallery-item photography">
+                                <div class="thumb">
+                                    <img class="img-fullwidth" src="~/Content/Client/images/portfolio/6.jpg" alt="project">
+                                    <div class="overlay-shade"></div>
+                                    <div class="icons-holder">
+                                        <div class="icons-holder-inner">
+                                            <div class="social-icons icon-sm icon-dark icon-circled icon-theme-colored">
+                                                <a data-lightbox="image" href="~/Content/Client/images/portfolio/6.jpg"><i class="fa fa-picture-o"></i></a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- Portfolio Item End -->
+                            <!-- Portfolio Item Start -->
+                            <div class="gallery-item laboratory">
+                                <div class="thumb">
+                                    <img class="img-fullwidth" src="~/Content/Client/images/portfolio/7.jpg" alt="project">
+                                    <div class="overlay-shade"></div>
+                                    <div class="icons-holder">
+                                        <div class="icons-holder-inner">
+                                            <div class="social-icons icon-sm icon-dark icon-circled icon-theme-colored">
+                                                <a data-lightbox="image" href="~/Content/Client/images/portfolio/7.jpg"><i class="fa fa-picture-o"></i></a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- Portfolio Item End -->
+                            <!-- Portfolio Item Start -->
+                            <div class="gallery-item photography">
+                                <div class="thumb">
+                                    <img class="img-fullwidth" src="~/Content/Client/images/portfolio/8.jpg" alt="project">
+                                    <div class="overlay-shade"></div>
+                                    <div class="icons-holder">
+                                        <div class="icons-holder-inner">
+                                            <div class="social-icons icon-sm icon-dark icon-circled icon-theme-colored">
+                                                <a data-lightbox="image" href="~/Content/Client/images/portfolio/8.jpg"><i class="fa fa-picture-o"></i></a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- Portfolio Item End -->
+                            <!-- Portfolio Item Start -->
+                            <div class="gallery-item dental">
+                                <div class="thumb">
+                                    <img class="img-fullwidth" src="~/Content/Client/images/portfolio/9.jpg" alt="project">
+                                    <div class="overlay-shade"></div>
+                                    <div class="icons-holder">
+                                        <div class="icons-holder-inner">
+                                            <div class="social-icons icon-sm icon-dark icon-circled icon-theme-colored">
+                                                <a data-lightbox="image" href="~/Content/Client/images/portfolio/9.jpg"><i class="fa fa-picture-o"></i></a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- Portfolio Item End -->
+                            <!-- Portfolio Item Start -->
+                            <div class="gallery-item photography">
+                                <div class="thumb">
+                                    <img class="img-fullwidth" src="~/Content/Client/images/portfolio/10.jpg" alt="project">
+                                    <div class="overlay-shade"></div>
+                                    <div class="icons-holder">
+                                        <div class="icons-holder-inner">
+                                            <div class="social-icons icon-sm icon-dark icon-circled icon-theme-colored">
+                                                <a data-lightbox="image" href="~/Content/Client/images/portfolio/10.jpg"><i class="fa fa-picture-o"></i></a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- Portfolio Item End -->
+                            <!-- Portfolio Item Start -->
+                            <div class="gallery-item laboratory">
+                                <div class="thumb">
+                                    <img class="img-fullwidth" src="~/Content/Client/images/portfolio/11.jpg" alt="project">
+                                    <div class="overlay-shade"></div>
+                                    <div class="icons-holder">
+                                        <div class="icons-holder-inner">
+                                            <div class="social-icons icon-sm icon-dark icon-circled icon-theme-colored">
+                                                <a data-lightbox="image" href="~/Content/Client/images/portfolio/11.jpg"><i class="fa fa-picture-o"></i></a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- Portfolio Item End -->
+                            <!-- Portfolio Item Start -->
+                            <div class="gallery-item surgery">
+                                <div class="thumb">
+                                    <img class="img-fullwidth" src="~/Content/Client/images/portfolio/12.jpg" alt="project">
+                                    <div class="overlay-shade"></div>
+                                    <div class="icons-holder">
+                                        <div class="icons-holder-inner">
+                                            <div class="social-icons icon-sm icon-dark icon-circled icon-theme-colored">
+                                                <a data-lightbox="image" href="~/Content/Client/images/portfolio/12.jpg"><i class="fa fa-picture-o"></i></a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- Portfolio Item End -->
+
+                        </div>
+                        <!-- End Portfolio Gallery Grid -->
+                    </div>
+                </div>
+            </div>
+        </section>*@
+
+    <!-- Section: News -->
+
 </div>
 
-<div class="row">
-    <div class="col-md-4">
-        <h2>Getting started</h2>
-        <p>
-            ASP.NET MVC gives you a powerful, patterns-based way to build dynamic websites that
-            enables a clean separation of concerns and gives you full control over markup
-            for enjoyable, agile development.
-        </p>
-        <p><a class="btn btn-default" href="https://go.microsoft.com/fwlink/?LinkId=301865">Learn more &raquo;</a></p>
-    </div>
-    <div class="col-md-4">
-        <h2>Get more libraries</h2>
-        <p>NuGet is a free Visual Studio extension that makes it easy to add, remove, and update libraries and tools in Visual Studio projects.</p>
-        <p><a class="btn btn-default" href="https://go.microsoft.com/fwlink/?LinkId=301866">Learn more &raquo;</a></p>
-    </div>
-    <div class="col-md-4">
-        <h2>Web Hosting</h2>
-        <p>You can easily find a web hosting company that offers the right mix of features and price for your applications.</p>
-        <p><a class="btn btn-default" href="https://go.microsoft.com/fwlink/?LinkId=301867">Learn more &raquo;</a></p>
-    </div>
-</div>
+<script>
+    $(document).ready(function () {
+        var isFocus = $('#IsFocus').val();
+
+        if (isFocus === 'True') {
+            $('html, body').animate({
+                scrollTop: $("#sectionFilter").offset().top
+            }, 2000);
+        }
+
+
+    });
+</script>   
