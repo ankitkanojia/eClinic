@@ -12,11 +12,13 @@ namespace AyurvedOnCall.Models
     using System;
     using System.Collections.Generic;
     
-    public partial class Advertisement
+    public partial class Offday
     {
-        public long AdvertisementId { get; set; }
-        public string LinkUrl { get; set; }
-        public string HImageUrl { get; set; }
-        public string VImageUrl { get; set; }
+        public long OffdayId { get; set; }
+        public System.DateTime OffDate { get; set; }
+        public string Reason { get; set; }
+        public long DoctorId { get; set; }
+    
+        public virtual Doctor Doctor { get; set; }
     }
 }

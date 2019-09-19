@@ -14,19 +14,11 @@ namespace AyurvedOnCall.Models
     
     public partial class EmailTemplete
     {
-        public int EmailTempleteId { get; set; }
-        public string Name { get; set; }
+        public long EmailTempleteId { get; set; }
+        public string Title { get; set; }
         public string Subject { get; set; }
         public string Body { get; set; }
         public string HashTag { get; set; }
-        public string FromId { get; set; }
-        public string BccId { get; set; }
-        public bool IsActive { get; set; }
-        public string CreatedBy { get; set; }
-        public string UpdatedBy { get; set; }
-        public System.DateTime CreatedDate { get; set; }
-        public Nullable<System.DateTime> UpdatedDate { get; set; }
-        public Nullable<int> CreatedDateInt { get; set; }
-        public Nullable<int> UpdatedDateInt { get; set; }
+        public string FromEmail { get; set; }
     }
 }

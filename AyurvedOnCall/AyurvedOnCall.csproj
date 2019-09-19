@@ -138,46 +138,13 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Models\Advertisement.cs">
+    <Compile Include="Helpers\CommonFunctions.cs" />
+    <Compile Include="Helpers\CookieHelper.cs" />
+    <Compile Include="Helpers\StaticValues.cs" />
+    <Compile Include="Models\Appointment.cs">
       <DependentUpon>DBModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\AspNetRole.cs">
-      <DependentUpon>DBModel.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\AspNetUser.cs">
-      <DependentUpon>DBModel.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\AspNetUserClaim.cs">
-      <DependentUpon>DBModel.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\AspNetUserLogin.cs">
-      <DependentUpon>DBModel.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\Brand.cs">
-      <DependentUpon>DBModel.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\CartDetail.cs">
-      <DependentUpon>DBModel.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\Category.cs">
-      <DependentUpon>DBModel.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\CollectionPoint.cs">
-      <DependentUpon>DBModel.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\Color.cs">
-      <DependentUpon>DBModel.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\Configuration.cs">
-      <DependentUpon>DBModel.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\Contact.cs">
-      <DependentUpon>DBModel.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\Container.cs">
-      <DependentUpon>DBModel.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\C__MigrationHistory.cs">
+    <Compile Include="Models\AvailableSlab.cs">
       <DependentUpon>DBModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\DBModel.Context.cs">
@@ -195,39 +162,31 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>DBModel.edmx</DependentUpon>
     </Compile>
-    <Compile Include="Models\DiscountType.cs">
+    <Compile Include="Models\Disease.cs">
+      <DependentUpon>DBModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Doctor.cs">
       <DependentUpon>DBModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\EmailTemplete.cs">
       <DependentUpon>DBModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\FAQ.cs">
+    <Compile Include="Models\Enquiry.cs">
       <DependentUpon>DBModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\FileManager.cs">
+    <Compile Include="Models\Offday.cs">
       <DependentUpon>DBModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\Offer.cs">
+    <Compile Include="Models\RoleMaster.cs">
       <DependentUpon>DBModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\Product.cs">
+    <Compile Include="Models\Speciality.cs">
       <DependentUpon>DBModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\ProductDetail.cs">
+    <Compile Include="Models\UserMaster.cs">
       <DependentUpon>DBModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\ProductFeature.cs">
-      <DependentUpon>DBModel.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\ProductImage.cs">
-      <DependentUpon>DBModel.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\ProductPTE.cs">
-      <DependentUpon>DBModel.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\Size.cs">
-      <DependentUpon>DBModel.tt</DependentUpon>
-    </Compile>
+    <Compile Include="Models\ViewModels\CommonVm.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -2917,8 +2876,6 @@
     <Content Include="Views\_ViewStart.cshtml" />
     <Content Include="Views\Shared\Error.cshtml" />
     <Content Include="Views\Shared\_Layout.cshtml" />
-    <Content Include="Views\Home\About.cshtml" />
-    <Content Include="Views\Home\Contact.cshtml" />
     <Content Include="Views\Home\Index.cshtml" />
     <Content Include="Scripts\plugins\chartist\chartist.min.js.map" />
     <Content Include="Scripts\plugins\diff_match_patch\COPYING" />
@@ -2927,7 +2884,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Models\ViewModels\" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

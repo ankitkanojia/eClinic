@@ -12,10 +12,14 @@ namespace AyurvedOnCall.Models
     using System;
     using System.Collections.Generic;
     
-    public partial class Configuration
+    public partial class Enquiry
     {
-        public long ConfigurationId { get; set; }
-        public string ConfigurationType { get; set; }
-        public string ConfigurationValue { get; set; }
+        public long EnquiryId { get; set; }
+        public string Name { get; set; }
+        public string Email { get; set; }
+        public string Subject { get; set; }
+        public string Phone { get; set; }
+        public string Message { get; set; }
+        public System.DateTime CreatedDate { get; set; }
     }
 }

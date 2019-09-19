@@ -12,15 +12,23 @@ namespace AyurvedOnCall.Models
     using System;
     using System.Collections.Generic;
     
-    public partial class Brand
+    public partial class UserMaster
     {
-        public long BrandId { get; set; }
-        public string Name { get; set; }
-        public string CreatedBy { get; set; }
-        public string UpdatedBy { get; set; }
+        public long UserMasterId { get; set; }
+        public long RoleMasterId { get; set; }
+        public string FullName { get; set; }
+        public string Mobile { get; set; }
+        public string Email { get; set; }
+        public string Password { get; set; }
+        public string City { get; set; }
+        public string Address { get; set; }
+        public string ProfileImg { get; set; }
         public System.DateTime CreatedDate { get; set; }
         public Nullable<System.DateTime> UpdatedDate { get; set; }
-        public Nullable<int> CreatedDateInt { get; set; }
-        public Nullable<int> UpdatedDateInt { get; set; }
+        public bool IsActive { get; set; }
+        public bool IsDelete { get; set; }
+        public bool IsFacebookLogin { get; set; }
+    
+        public virtual RoleMaster RoleMaster { get; set; }
     }
 }

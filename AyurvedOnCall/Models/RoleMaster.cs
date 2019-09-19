@@ -12,18 +12,21 @@ namespace AyurvedOnCall.Models
     using System;
     using System.Collections.Generic;
     
-    public partial class AspNetRole
+    public partial class RoleMaster
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public AspNetRole()
+        public RoleMaster()
         {
-            this.AspNetUsers = new HashSet<AspNetUser>();
+            this.Doctors = new HashSet<Doctor>();
+            this.UserMasters = new HashSet<UserMaster>();
         }
     
-        public string Id { get; set; }
+        public long RoleMasterId { get; set; }
         public string Name { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<AspNetUser> AspNetUsers { get; set; }
+        public virtual ICollection<Doctor> Doctors { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<UserMaster> UserMasters { get; set; }
     }
 }

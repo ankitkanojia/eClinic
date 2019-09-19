@@ -25,30 +25,15 @@ namespace AyurvedOnCall.Models
             throw new UnintentionalCodeFirstException();
         }
     
-        public virtual DbSet<ProductPTE> ProductPTEs { get; set; }
-        public virtual DbSet<C__MigrationHistory> C__MigrationHistory { get; set; }
-        public virtual DbSet<Advertisement> Advertisements { get; set; }
-        public virtual DbSet<AspNetRole> AspNetRoles { get; set; }
-        public virtual DbSet<AspNetUserClaim> AspNetUserClaims { get; set; }
-        public virtual DbSet<AspNetUserLogin> AspNetUserLogins { get; set; }
-        public virtual DbSet<AspNetUser> AspNetUsers { get; set; }
-        public virtual DbSet<Brand> Brands { get; set; }
-        public virtual DbSet<CartDetail> CartDetails { get; set; }
-        public virtual DbSet<Category> Categories { get; set; }
-        public virtual DbSet<CollectionPoint> CollectionPoints { get; set; }
-        public virtual DbSet<Color> Colors { get; set; }
-        public virtual DbSet<Configuration> Configurations { get; set; }
-        public virtual DbSet<Contact> Contacts { get; set; }
-        public virtual DbSet<Container> Containers { get; set; }
-        public virtual DbSet<DiscountType> DiscountTypes { get; set; }
+        public virtual DbSet<Appointment> Appointments { get; set; }
+        public virtual DbSet<AvailableSlab> AvailableSlabs { get; set; }
+        public virtual DbSet<Disease> Diseases { get; set; }
+        public virtual DbSet<Doctor> Doctors { get; set; }
         public virtual DbSet<EmailTemplete> EmailTempletes { get; set; }
-        public virtual DbSet<FAQ> FAQs { get; set; }
-        public virtual DbSet<FileManager> FileManagers { get; set; }
-        public virtual DbSet<Offer> Offers { get; set; }
-        public virtual DbSet<Product> Products { get; set; }
-        public virtual DbSet<ProductDetail> ProductDetails { get; set; }
-        public virtual DbSet<ProductFeature> ProductFeatures { get; set; }
-        public virtual DbSet<ProductImage> ProductImages { get; set; }
-        public virtual DbSet<Size> Sizes { get; set; }
+        public virtual DbSet<Enquiry> Enquiries { get; set; }
+        public virtual DbSet<Offday> Offdays { get; set; }
+        public virtual DbSet<RoleMaster> RoleMasters { get; set; }
+        public virtual DbSet<Speciality> Specialities { get; set; }
+        public virtual DbSet<UserMaster> UserMasters { get; set; }
     }
 }
