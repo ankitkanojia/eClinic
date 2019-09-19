@@ -1,42 +1,471 @@
 ﻿<!DOCTYPE html>
 <html>
 <head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>@ViewBag.Title - My ASP.NET Application</title>
-    @Styles.Render("~/Content/css")
-    @Scripts.Render("~/bundles/modernizr")
-</head>
-<body>
-    <div class="navbar navbar-inverse navbar-fixed-top">
-        <div class="container">
-            <div class="navbar-header">
-                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                </button>
-                @Html.ActionLink("Application name", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
-            </div>
-            <div class="navbar-collapse collapse">
-                <ul class="nav navbar-nav">
-                    <li>@Html.ActionLink("Home", "Index", "Home")</li>
-                    <li>@Html.ActionLink("About", "About", "Home")</li>
-                    <li>@Html.ActionLink("Contact", "Contact", "Home")</li>
-                </ul>
-            </div>
-        </div>
-    </div>
-    <div class="container body-content">
-        @RenderBody()
-        <hr />
-        <footer>
-            <p>&copy; @DateTime.Now.Year - My ASP.NET Application</p>
-        </footer>
-    </div>
 
-    @Scripts.Render("~/bundles/jquery")
-    @Scripts.Render("~/bundles/bootstrap")
+    <!-- Meta Tags -->
+    <meta name="viewport" content="width=device-width,initial-scale=1.0" />
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
+    <title>@ViewBag.Title  </title>
+
+    <!-- Favicon and Touch Icons -->
+    @* <link href="~/Content/Client/images/favicon.png" rel="shortcut icon" type="image/png"> *@
+    @* <link href="~/Content/Client/images/apple-touch-icon.png" rel="apple-touch-icon"> *@
+    @* <link href="~/Content/Client/images/apple-touch-icon-72x72.png" rel="apple-touch-icon" sizes="72x72"> *@
+    @* <link href="~/Content/Client/images/apple-touch-icon-114x114.png" rel="apple-touch-icon" sizes="114x114"> *@
+    @* <link href="~/Content/Client/images/apple-touch-icon-144x144.png" rel="apple-touch-icon" sizes="144x144"> *@
+
+    <!-- Stylesheet -->
+
+    <link href="~/Content/Client/css/bootstrap.min.css" rel="stylesheet" type="text/css">
+    <link href="~/Content/Client/css/jquery-ui.min.css" rel="stylesheet" type="text/css">
+    <link href="~/Content/Client/css/animate.css" rel="stylesheet" type="text/css">
+    <link href="~/Content/Client/css/css-plugin-collections.css" rel="stylesheet" />
+    <!-- CSS | menuzord megamenu skins -->
+    <link id="menuzord-menu-skins" href="~/Content/Client/css/menuzord-skins/menuzord-boxed.css" rel="stylesheet" />
+    <!-- CSS | Main style file -->
+    <link href="~/Content/Client/css/style-main.css" rel="stylesheet" type="text/css">
+    <!-- CSS | Preloader Styles -->
+    <link href="~/Content/Client/css/preloader.css" rel="stylesheet" type="text/css">
+    <!-- CSS | Custom Margin Padding Collection -->
+    <link href="~/Content/Client/css/custom-bootstrap-margin-padding.css" rel="stylesheet" type="text/css">
+    <!-- CSS | Responsive media queries -->
+    <link href="~/Content/Client/css/responsive.css" rel="stylesheet" type="text/css">
+    <!-- CSS | Style css. This is the file where you can place your own custom css code. Just uncomment it and use it. -->
+    <!-- <link href="~/Content/Client/css/style.css" rel="stylesheet" type="text/css"> -->
+    <!-- Revolution Slider 5.x CSS settings -->
+    <link href="~/Content/Client/js/revolution-slider/css/settings.css" rel="stylesheet" type="text/css" />
+    <link href="~/Content/Client/js/revolution-slider/css/layers.css" rel="stylesheet" type="text/css" />
+    <link href="~/Content/Client/js/revolution-slider/css/navigation.css" rel="stylesheet" type="text/css" />
+
+    <!-- CSS | Theme Color -->
+    <link href="~/Content/Client/css/colors/theme-skin-blue.css" rel="stylesheet" type="text/css">
+
+    <style>
+        .datepicker {
+            color: #333 !important;
+        }
+    </style>
+
+    <!-- external javascripts -->
+    <script src="~/Content/Client/js/jquery-2.2.0.min.js"></script>
+    <script src="~/Content/Client/js/jquery-ui.min.js"></script>
+    <script src="~/Content/Client/js/bootstrap.min.js"></script>
+    <!-- JS | jquery plugin collection for this theme -->
+    <script src="~/Content/Client/js/jquery-plugin-collection.js"></script>
+
+    <!-- Revolution Slider 5.x SCRIPTS -->
+    <script src="~/Content/Client/js/revolution-slider/js/jquery.themepunch.tools.min.js"></script>
+    <script src="~/Content/Client/js/revolution-slider/js/jquery.themepunch.revolution.min.js"></script>
+
+    <link href="~/Content/Client/plugins/izitoast/css/iziToast.min.css" rel="stylesheet" />
+    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+      <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+      <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+    <![endif]-->
+</head>
+
+<body class="has-side-panel side-panel-right fullwidth-page side-push-panel">
+    <div class="body-overlay"></div>
+
+    <div id="wrapper" class="clearfix">
+        <!-- preloader -->
+        <div id="preloader">
+            <div id="spinner">
+                <img src="~/Content/Client/images/preloaders/1.gif" alt="">
+            </div>
+            <div id="disable-preloader" class="btn btn-default btn-sm">Disable Preloader</div>
+        </div>
+
+        <!-- Header -->
+        <header id="header" class="header">
+            <div class="header-top bg-theme-colored sm-text-center">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-md-3">
+                            <div class="widget no-border m-0">
+                                <ul class="social-icons icon-dark icon-theme-colored icon-sm sm-text-center">
+                                    <li><a href="#"><i class="fa fa-facebook"></i></a></li>
+                                    <li><a href="#"><i class="fa fa-twitter"></i></a></li>
+                                    <li><a href="#"><i class="fa fa-google-plus"></i></a></li>
+                                    <li><a href="#"><i class="fa fa-linkedin"></i></a></li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="col-md-9">
+                            <div class="widget no-border m-0">
+                                <ul class="list-inline pull-right flip sm-pull-none sm-text-center mt-5">
+                                    <li class="m-0 pl-10 pr-10"> <i class="fa fa-phone text-white"></i> <a class="text-white" href="tel:09624061551">+91 96240 61551</a> </li>
+                                    <li class="text-white m-0 pl-10 pr-10"> <i class="fa fa-clock-o text-white"></i> 24x7 Available</li>
+                                    <li class="m-0 pl-10 pr-10"> <i class="fa fa-envelope-o text-white"></i> <a class="text-white" href="mailto:ayurdaxnaresh@gmail.com?Subject=Enquiry%20from%20Ayurvedoncall">ayurdaxnaresh@gmail.com</a> </li>
+                                    <li class="m-0 pl-10 pr-10">
+                                        <i class="fa fa-user text-white"></i>
+                                        <a class="text-white" href="#">
+                                            @if (!string.IsNullOrWhiteSpace(CookieHelper.Get(StaticValues.SessionFullName)))
+                                            {
+                                                @: Welcome @CookieHelper.Get(StaticValues.SessionFullName)
+                                            }
+                                            else
+                                            {
+                                                @: Welcome Guest
+                                            }
+                                        </a>
+                                    </li>
+                                    <li class="sm-display-block mt-sm-10 mb-sm-10">
+                                        <!-- Modal: Appointment Starts -->
+                                        <a class="bg-light p-5 text-theme-colored font-11 pl-10 pr-10" href="@Url.Action("Appointment", "Patient")">Make an Appointment</a>
+                                        <!-- Modal: Appointment End -->
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="header-nav">
+                <div class="header-nav-wrapper navbar-scrolltofixed bg-lightest">
+                    <div class="container">
+                        <nav id="menuzord-right" class="menuzord blue bg-lightest">
+                            <a class="menuzord-brand pull-left flip" href="javascript:void(0)" style="margin-top: 10px">
+                                <img src="~/Content/logo.png" alt="">
+                            </a>
+
+                            @{
+                                var userid = CookieHelper.Get(StaticValues.SessionUserId);
+                                var roleid = CookieHelper.Get(StaticValues.SessionRoleId);
+                                var isAuthorised = !string.IsNullOrWhiteSpace(userid) && !string.IsNullOrWhiteSpace(roleid);
+                            }
+
+                            <ul class="menuzord-menu">
+                                <li>
+                                    <a href="@Url.Action("Index", "Home")">Home</a>
+                                </li>
+
+                                @if (isAuthorised)
+                                {
+                                    if (roleid == "2")
+                                    {
+                                        <li>
+                                            <a href="@Url.Action("Index", "Doctor")">Dashboard</a>
+                                        </li>
+                                    }
+                                    else if (roleid == "3")
+                                    {
+                                        <li>
+                                            <a href="@Url.Action("Index", "Patient")">Dashboard</a>
+                                        </li>
+                                    }
+
+                                }
+
+                                @if (isAuthorised)
+                                {
+                                    if (roleid == "2")
+                                    {
+                                        <li>
+                                            <a href="@Url.Action("Appointments", "Doctor")">My Appointment</a>
+                                        </li>
+
+                                        <li>
+                                            <a href="@Url.Action("AvailableSlab", "Doctor")">My Availability</a>
+                                        </li>
+
+                                        <li>
+                                            <a href="@Url.Action("MyHoliday", "Doctor")">My Holidays</a>
+                                        </li>
+                                    }
+                                    else if (roleid == "3")
+                                    {
+                                        <li>
+                                            <a href="@Url.Action("Appointment", "Patient")">Appointment</a>
+                                        </li>
+                                    }
+                                }
+                                else
+                                {
+                                    <li>
+                                        <a href="@Url.Action("Appointment", "Patient")">Appointment</a>
+                                    </li>
+                                }
+
+                                <li>
+                                    <a href="@Url.Action("ChangePassword", "Home")">Change Password</a>
+                                </li>
+
+                                <li>
+                                    <a href="@Url.Action("Contact", "Home")">Contact</a>
+                                </li>
+
+                                @if (isAuthorised)
+                                {
+                                    if (roleid == "2")
+                                    {
+                                        <li>
+                                            <a href="@Url.Action("Logout", "Doctor")">Logout</a>
+                                        </li>
+                                    }
+                                    else if (roleid == "3")
+                                    {
+                                        <li>
+                                            <a href="@Url.Action("Logout", "Home")">Logout</a>
+                                        </li>
+                                    }
+                                    else
+                                    {
+                                        <li>
+                                            <a class="text-danger" href="@Url.Action("Logout", "Admin")"><b>Admin login found. Click here to logout.</b></a>
+                                        </li>
+                                    }
+                                }
+                                else
+                                {
+                                    <li>
+                                        <a href="@Url.Action("Authentication", "Doctor")">Doctor Area</a>
+                                    </li>
+
+                                    <li>
+                                        <a href="@Url.Action("Authentication", "Home")">Login/Registration</a>
+                                    </li>
+                                }
+
+
+
+                            </ul>
+                        </nav>
+                    </div>
+                </div>
+            </div>
+        </header>
+
+        <!-- Start main-content -->
+        @RenderBody()
+        <!-- end main-content -->
+        <!-- Footer -->
+        <footer class="footer p-0 bg-solid-color bg-black-111">
+            <div class="container">
+                <div class="row">
+                    <div class="footer-box-wrapper equal-height">
+                        <div class="col-sm-4 footer-box-one pr-0 pl-sm-0">
+                            <div class="footer-box icon-box media">
+                                <a href="#" class="media-left pull-left mr-30 mr-sm-15"><i class=" icon-ambulance14 text-white"></i></a>
+                                <div class="media-body">
+                                    <h4 class="media-heading heading title">24 Hours Service</h4>
+                                    @*<p>
+                                            Lorem ipsum dolor sit amet, consectetur adipisicing elit.
+                                            <a href="#"><i class="fa fa-arrow-circle-right font-14"></i></a>
+                                        </p>*@
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-sm-4 footer-box-two pl-0 pr-0">
+                            <div class="footer-box icon-box media">
+                                <a href="#" class="media-left pull-left mr-30 mr-sm-15"><i class="fa fa-comments-o text-white"></i></a>
+                                <div class="media-body">
+                                    <h4 class="media-heading heading title">Online Help</h4>
+                                    @*<p>
+                                            Lorem ipsum dolor sit amet, consectetur adipisicing elit.
+                                            <a href="#"><i class="fa fa-arrow-circle-right font-14"></i></a>
+                                        </p>*@
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-sm-4 footer-box-three pl-0 pr-sm-0">
+                            <div class="footer-box icon-box media">
+                                <a href="#" class="media-left pull-left mr-30 mr-sm-15"><i class=" fa fa-credit-card text-white"></i></a>
+                                <div class="media-body">
+                                    <h4 class="media-heading heading title">Online Payment</h4>
+                                    @*<p>
+                                            Lorem ipsum dolor sit amet, consectetur adipisicing elit.
+                                            <a href="#"><i class="fa fa-arrow-circle-right font-14"></i></a>
+                                        </p>*@
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                @*<div class="row equal-height">
+                        <div class="col-sm-4 col-md-3 border-right-black sm-height-auto">
+                            <div class="widget dark pt-120 pb-30 maxwidth400 sm-text-center">
+                                <h5 class="widget-title">Our Services</h5>
+                                <ul>
+                                    <li><a href="#">Choosing a doctor</a></li>
+                                    <li><a href="#">Take proper treatment</a></li>
+                                    <li><a href="#">Discuss your doctor</a></li>
+                                    <li><a href="#">Find medical error</a></li>
+                                    <li><a href="#">Report progress condition</a></li>
+                                    <li><a href="#">Primary medical care</a></li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="col-sm-4 col-md-6 text-center border-right-black sm-height-auto">
+                            <div class="footer-widget pt-70 pl-60 pr-60 pt-sm-10 pl-sm-10 pr-sm-10 maxwidth400 sm-text-center">
+                                <div class="footer-logo border-bottom-dot-1px pb-30">
+                                    <img class="mb-20" src="~/Content/Client/images/logo-wide-white.png" alt="">
+                                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Consequuntur exercitationem repellendus iusto quos, quasi dolorum hic cum voluptatibus, voluptas suscipit numquam quisquam!</p>
+                                </div>
+                                <div class="footer-news-letter mt-30">
+                                    <h4 class="text-white mb-30">Subscribe Our Newsletter</h4>
+                                    <form id="footer-mailchimp-subscription-form" class="newsletter-form mt-10">
+                                        <label class="display-block" for="mce-EMAIL"></label>
+                                        <div class="input-group">
+                                            <input type="email" value="" name="EMAIL" placeholder="Your Email" class="form-control" data-height="37px" id="mce-EMAIL">
+                                            <span class="input-group-btn">
+                                                <button type="submit" class="btn btn-colored btn-theme-colored m-0"><i class="fa fa-paper-plane-o text-white"></i></button>
+                                            </span>
+                                        </div>
+                                    </form>
+                                     Mailchimp Subscription Form Validation
+                                    <script type="text/javascript">
+                                        $('#footer-mailchimp-subscription-form').ajaxChimp({
+                                            callback: mailChimpCallBack,
+                                            url: '//thememascot.us9.list-manage.com/subscribe/post?u=a01f440178e35febc8cf4e51f&amp;id=49d6d30e1e'
+                                        });
+
+                                        function mailChimpCallBack(resp) {
+                                            // Hide any previous response text
+                                            var $mailchimpform = $('#footer-mailchimp-subscription-form'),
+                                                $response = '';
+                                            $mailchimpform.children(".alert").remove();
+                                            console.log(resp);
+                                            if (resp.result === 'success') {
+                                                $response = '<div class="alert alert-success"><button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>' + resp.msg + '</div>';
+                                            } else if (resp.result === 'error') {
+                                                $response = '<div class="alert alert-danger"><button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>' + resp.msg + '</div>';
+                                            }
+                                            $mailchimpform.prepend($response);
+                                        }
+                                    </script>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-sm-4 col-md-3 sm-height-auto">
+                            <div class="widget dark text-right sm-text-center pt-120 pb-140 pt-xs-40 pb-xs-0 maxwidth400">
+                                <h5 class="widget-title">Quick Contact</h5>
+                                <ul>
+                                    <li><a href="#">+(012) 345 6789</a></li>
+                                    <li><a href="#">hello@yourdomain.com</a></li>
+                                    <li><a href="#" class="lineheight-20">121 King Street, Melbourne Victoria 3000, Australia</a></li>
+                                </ul>
+                                <ul class="social-icons icon-gray icon-circled icon-sm pull-right sm-pull-none sm-text-center mt-sm-15">
+                                    <li class="wow fadeInRight" data-wow-delay=".1s"><a href="#"><i class="fa fa-facebook"></i></a></li>
+                                    <li class="wow fadeInRight" data-wow-delay=".2s"><a href="#"><i class="fa fa-twitter"></i></a></li>
+                                    <li class="wow fadeInRight" data-wow-delay=".3s"><a href="#"><i class="fa fa-google-plus"></i></a></li>
+                                    <li class="wow fadeInRight" data-wow-delay=".4s"><a href="#"><i class="fa fa-instagram"></i></a></li>
+                                    <li class="wow fadeInRight" data-wow-delay=".5s"><a href="#"><i class="fa fa-linkedin"></i></a></li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>*@
+            </div>
+            <div class="footer-nav bg-black-222 p-20">
+                <div class="container pt-20 pb-0">
+                    <div class="row">
+                        <div class="col-md-12">
+                            <p class="font-11 pull-left mb-sm-15 sm-text-center sm-pull-none">Copyright &copy;2018 Ayurvedoncall.com. All Rights Reserved</p>
+                            <div class="widget m-0">
+                                <ul class="font-11 pull-right text-right list-inline sm-text-center sm-pull-none">
+                                    <li><a href="@Url.Action("Index", "Home")">Home</a></li>
+                                    <li>/</li>
+                                    <li><a href="@Url.Action("Authentication", "Home")">Patient Login</a></li>
+                                    <li>/</li>
+                                    <li><a href="@Url.Action("Authentication", "Doctor")">Doctor Login</a></li>
+                                    <li>/</li>
+                                    <li><a href="@Url.Action("Contact", "Home")">Contact</a></li>
+                                    <li>/</li>
+                                    <li><a href="@Url.Action("Appointment", "Patient")">Appointment</a></li>
+                                    <li>/</li>
+                                    <li><a href="@Url.Action("Index", "Admin")">Admin Panel</a></li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </footer>
+        <a class="scrollToTop" href="#"><i class="fa fa-angle-up"></i></a>
+    </div>
+    <!-- end wrapper -->
+    <!-- Footer Scripts -->
+    <!-- JS | Custom script for all pages -->
+    <script src="~/Content/Client/js/custom.js"></script>
+
+    <script src="~/Content/Client/plugins/izitoast/js/iziToast.min.js"></script>
+
+    <!-- SLIDER REVOLUTION 5.0 EXTENSIONS
+              (Load Extensions only on Local File Systems !
+               The following part can be removed on Server for On Demand Loading) -->
+    <script type="text/javascript" src="~/Content/Client/js/revolution-slider/js/extensions/revolution.extension.actions.min.js"></script>
+    <script type="text/javascript" src="~/Content/Client/js/revolution-slider/js/extensions/revolution.extension.carousel.min.js"></script>
+    <script type="text/javascript" src="~/Content/Client/js/revolution-slider/js/extensions/revolution.extension.kenburn.min.js"></script>
+    <script type="text/javascript" src="~/Content/Client/js/revolution-slider/js/extensions/revolution.extension.layeranimation.min.js"></script>
+    <script type="text/javascript" src="~/Content/Client/js/revolution-slider/js/extensions/revolution.extension.migration.min.js"></script>
+    <script type="text/javascript" src="~/Content/Client/js/revolution-slider/js/extensions/revolution.extension.navigation.min.js"></script>
+    <script type="text/javascript" src="~/Content/Client/js/revolution-slider/js/extensions/revolution.extension.parallax.min.js"></script>
+    <script type="text/javascript" src="~/Content/Client/js/revolution-slider/js/extensions/revolution.extension.slideanims.min.js"></script>
+    <script type="text/javascript" src="~/Content/Client/js/revolution-slider/js/extensions/revolution.extension.video.min.js"></script>
+
+    @*IZI toastr*@
+    @{
+        var successMsg = string.Empty;
+        var errorMsg = string.Empty;
+
+        if (TempData["Success"] != null) { successMsg = TempData["Success"].ToString(); }
+        if (TempData["Error"] != null) { errorMsg = TempData["Error"].ToString(); }
+
+        <input type="hidden" id="successMsg" value="@successMsg" />
+        <input type="hidden" id="errorMsg" value="@errorMsg" />
+    }
+    <script type="text/javascript">
+
+        function showSuccess(message) {
+            iziToast.success({
+                title: 'Success',
+                position: 'topRight',
+                message: message
+            });
+            $('#successMsg').val('');
+        }
+        function showError(message) {
+            iziToast.error({
+                title: 'Error',
+                position: 'topRight',
+                message: message
+            });
+            $('#errorMsg').val('');
+        }
+
+        $(document).ready(function () {
+
+            if ($('#successMsg').val() !== '') {
+                showSuccess($('#successMsg').val());
+            }
+
+            if ($('#errorMsg').val() !== '') {
+                showError($('#errorMsg').val());
+            }
+
+
+        });
+    </script>
+
+    <!--Start of Tawk.to Script-->
+    <!--Start of Tawk.to Script-->
+    <script type="text/javascript">
+var Tawk_API=Tawk_API||{}, Tawk_LoadStart=new Date();
+(function(){
+var s1=document.createElement("script"),s0=document.getElementsByTagName("script")[0];
+s1.async=true;
+s1.src='https://embed.tawk.to/5bdad0dfa3e36b12bc6e9bbf/default';
+s1.charset='UTF-8';
+s1.setAttribute('crossorigin','*');
+s0.parentNode.insertBefore(s1,s0);
+})();
+    </script>
+    <!--End of Tawk.to Script-->
+    <!--End of Tawk.to Script-->
+
     @RenderSection("scripts", required: false)
 </body>
+
 </html>

@@ -138,6 +138,9 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Helpers\CommonFunctions.cs" />
+    <Compile Include="Helpers\CookieHelper.cs" />
+    <Compile Include="Helpers\StaticValues.cs" />
     <Compile Include="Models\Appointment.cs">
       <DependentUpon>DBModel.tt</DependentUpon>
     </Compile>
