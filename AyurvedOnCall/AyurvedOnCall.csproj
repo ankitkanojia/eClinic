@@ -2903,6 +2903,8 @@
     <Content Include="Scripts\plugins\topojson\LICENSE" />
     <Content Include="Views\Shared\_adminAuthLayout.cshtml" />
     <Content Include="Views\Admin\Index.cshtml" />
+    <Content Include="Views\Admin\Dashboard.cshtml" />
+    <Content Include="Views\Admin\ForgotPassword.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
