@@ -1,0 +1,135 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>@ViewBag.Title</title>
+    <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,300,600,700' rel='stylesheet' type='text/css'>
+    <!-- Add local styles, mostly for plugins css file -->
+    @if (IsSectionDefined("Styles"))
+    {@RenderSection("Styles", required: false)}
+
+    <!-- Add jQuery Style direct - used for jQGrid plugin -->
+    <link href="@Url.Content("~/Scripts/plugins/jquery-ui/jquery-ui.min.css")" rel="stylesheet" type="text/css" />
+    <!-- Primary Inspinia style -->
+    @Styles.Render("~/Content/css")
+    @Styles.Render("~/font-awesome/css")
+
+    @Styles.Render("~/Content/plugins/iCheck/iCheckStyles")
+    @Styles.Render("~/plugins/toastrStyles")
+
+    <style>
+        .datepicker {
+            color: #333 !important;
+        }
+    </style>
+
+</head>
+<body class="skin-1">
+    <!-- Skin configuration box -->
+    @*@Html.Partial("_SkinConfig")*@
+    <!-- Wrapper-->
+    <!-- PageClass give you ability to specify custom style for specific view based on action -->
+    <div id="wrapper">
+        <!-- Navigation -->
+        @Html.Partial("_Navigation")
+        <!-- Page wraper -->
+        <div id="page-wrapper" class="gray-bg @ViewBag.SpecialClass">
+            <!-- Top Navbar -->
+            @Html.Partial("_TopNavbar")
+            <!-- Main view  -->
+            @RenderBody()
+            <!-- Footer -->
+            @Html.Partial("_Footer")
+        </div>
+        <!-- End page wrapper-->
+        <!-- Right Sidebar -->
+        @Html.Partial("_RightSidebar")
+    </div>
+    <!-- End wrapper-->
+
+    @{
+        var successMsg = string.Empty;
+        var errorMsg = string.Empty;
+
+        if (TempData["Success"] != null) { successMsg = TempData["Success"].ToString(); }
+        if (TempData["Error"] != null) { errorMsg = TempData["Error"].ToString(); }
+
+        <input type="hidden" id="successMsg" value="@successMsg" />
+        <input type="hidden" id="errorMsg" value="@errorMsg" />
+    }
+
+
+    <!-- Section for main scripts render -->
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/bootstrap")
+    @Scripts.Render("~/plugins/slimScroll")
+    @Scripts.Render("~/bundles/inspinia")
+    <!-- Skin config script - only for demo purpose-->
+    @Scripts.Render("~/bundles/skinConfig")
+    @Scripts.Render("~/plugins/iCheck")
+    @Scripts.Render("~/plugins/toastr")
+    <style>
+        #toast-container > .toast-error {
+            background-image: none !important;
+        }
+
+        #toast-container > .toast-success {
+            background-image: none !important;
+        }
+    </style>
+    <script type="text/javascript">
+
+        function showSuccess(message) {
+            toastr.options = {
+                "closeButton": true,
+                "progressBar": true,
+                "preventDuplicates": true,
+                "positionClass": "toast-top-right",
+                "showDuration": "400",
+                "hideDuration": "1000",
+                "timeOut": "7000",
+                "extendedTimeOut": "1000",
+            }
+            toastr.success(message, "Success");
+            $('#successMsg').val('');
+        }
+        function showError(message) {
+            toastr.options = {
+                "closeButton": true,
+                "progressBar": true,
+                "preventDuplicates": true,
+                "positionClass": "toast-top-right",
+                "showDuration": "400",
+                "hideDuration": "1000",
+                "timeOut": "7000",
+                "extendedTimeOut": "1000",
+            }
+            toastr.error(message, "Error");
+            $('#errorMsg').val('');
+        }
+
+        $(document).ready(function () {
+
+            if ($('#successMsg').val() != '') {
+                showSuccess($('#successMsg').val());
+            }
+
+            if ($('#errorMsg').val() != '') {
+                showError($('#errorMsg').val());
+            }
+
+            $('.i-checks').iCheck({
+                checkboxClass: 'icheckbox_square-green',
+                radioClass: 'iradio_square-green',
+            });
+
+        });
+    </script>
+
+    <!-- Handler for local scripts -->
+    @RenderSection("scripts", required: false)
+</body>
+</html>
