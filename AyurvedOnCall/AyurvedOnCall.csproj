@@ -158,6 +158,7 @@
     <Compile Include="Helpers\CommonFunctions.cs" />
     <Compile Include="Helpers\CookieHelper.cs" />
     <Compile Include="Helpers\EnumList.cs" />
+    <Compile Include="Helpers\HMTLHelperExtensions.cs" />
     <Compile Include="Helpers\SendgridEmailHelpers.cs" />
     <Compile Include="Helpers\StaticValues.cs" />
     <Compile Include="Models\Appointment.cs">
@@ -2906,6 +2907,10 @@
     <Content Include="Views\Admin\Dashboard.cshtml" />
     <Content Include="Views\Admin\ForgotPassword.cshtml" />
     <Content Include="Views\Shared\_adminLayout.cshtml" />
+    <Content Include="Views\Shared\_Navigation.cshtml" />
+    <Content Include="Views\Shared\_RightSidebar.cshtml" />
+    <Content Include="Views\Shared\_TopNavbar.cshtml" />
+    <Content Include="Views\Shared\_Footer.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
