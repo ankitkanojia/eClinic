@@ -1,0 +1,33 @@
+﻿@model  LoginVm
+
+@{
+    ViewBag.Title = "Admin Login";
+    Layout = "~/Views/Shared/_adminAuthLayout.cshtml";
+}
+
+<div>
+    <div>
+        <h1 class="logo-name">Dr.</h1>
+    </div>
+    <h3 class="text-white">Welcome to Admin Panel</h3>
+    <p>
+        To access the control panel please provide your credentials below.
+    </p>
+    <p>Login in. To see it in action.</p>
+    @using (Html.BeginForm("Index", "Admin", FormMethod.Post, new { id = "frm", @class="m-t" }))
+    {
+        @Html.AntiForgeryToken()
+        <div class="form-group">
+            <input type="email" class="form-control" id="Email" name="Email" placeholder="Email" required="">
+        </div>
+        <div class="form-group">
+            <input type="password" id="Password" name="Password" class="form-control" placeholder="Password" required="">
+        </div>
+        <button type="submit" class="btn btn-info block full-width m-b">Login</button>
+        
+        <a href="@Url.Action("Index", "Home")" class="btn btn-default block full-width m-b">Go to user panel</a>
+        <a href="@Url.Action("ForgotPassword", "Admin")"><p class="text-white">Forgot password?</p></a>
+    }
+        
+    </div>
+

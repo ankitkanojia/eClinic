@@ -1,0 +1,56 @@
+﻿@model AdminDashboardVm
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_adminLayout.cshtml";
+}
+
+<div class="wrapper wrapper-content">
+    <div class="row">
+        <div class="col-lg-4">
+            <div class="ibox float-e-margins">
+                <div class="ibox-title">
+                    <span class="label label-success pull-right">Annual</span>
+                    <h5>Total Doctors</h5>
+                </div>
+                <div class="ibox-content">
+                    <h1 class="no-margins">@Model.TotalDoctors</h1>
+                    <div class="stat-percent font-bold text-success">98% <i class="fa fa-bolt"></i></div>
+                    <small>Total active doctors</small>
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-4">
+            <div class="ibox float-e-margins">
+                <div class="ibox-title">
+                    <span class="label label-info pull-right">Annual</span>
+                    <h5>Total Patients</h5>
+                </div>
+                <div class="ibox-content">
+                    <h1 class="no-margins">5585</h1>
+                    <div class="stat-percent font-bold text-info">20% <i class="fa fa-level-up"></i></div>
+                    <small>Total active patients</small>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-lg-4">
+            <div class="ibox float-e-margins">
+                <div class="ibox-title">
+                    <span class="label label-danger pull-right">Annual</span>
+                    <h5>Total Appointments</h5>
+                </div>
+                <div class="ibox-content">
+                    <h1 class="no-margins">10,500</h1>
+                    <div class="stat-percent font-bold text-danger">38% <i class="fa fa-level-down"></i></div>
+                    <small>Total appointments</small>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+</div>
+
+
