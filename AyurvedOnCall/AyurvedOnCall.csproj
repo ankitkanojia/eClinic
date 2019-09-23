@@ -152,6 +152,7 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Controllers\AdminController.cs" />
     <Compile Include="Controllers\ADoctorController.cs" />
+    <Compile Include="Controllers\AEnquiryController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -2918,6 +2919,7 @@
     <Content Include="Views\ADoctor\Add.cshtml" />
     <Content Include="Views\ADoctor\Edit.cshtml" />
     <Content Include="Views\ADoctor\Index.cshtml" />
+    <Content Include="Views\AEnquiry\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

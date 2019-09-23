@@ -1,0 +1,113 @@
+﻿@model List<Enquiry>
+
+@{
+    ViewBag.Title = "Enquiry";
+    Layout = "~/Views/Shared/_adminLayout.cshtml";
+}
+
+
+
+<div class="row wrapper border-bottom white-bg page-heading">
+    <div class="col-lg-10">
+        <h2>Enquiry</h2>
+        <ol class="breadcrumb">
+            <li>
+                <a href="@Url.Action("Dashboard", "Admin")">Dashboard</a>
+            </li>
+            <li class="active">
+                <strong>List of Enquiry</strong>
+            </li>
+        </ol>
+    </div>
+    <div class="col-lg-2">
+    </div>
+</div>
+
+
+<div class="wrapper wrapper-content animated fadeInRight">
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="ibox float-e-margins">
+                @*Title*@
+                <div class="ibox-title">
+                    <h5>Enquiry</h5>
+                </div>
+
+                @*Content*@
+                <div class="ibox-content">
+                    <table class="table table-striped responsive table-bordered table-hover" width="100%" id="dtTable">
+                        <thead>
+                            <tr>
+                                <th>Date</th>
+                                <th>Name</th>
+                                <th>Email</th>
+                                <th>Phone</th>
+                                <th>Subject</th>
+                                <th>Message</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @if (Model.Any())
+                            {
+                                foreach (var item in Model.OrderByDescending(s => s.CreatedDate))
+                                {
+                                    <tr>
+                                        <td>@item.CreatedDate.ToShortDateString()</td>
+                                        <td>@item.Name</td>
+                                        <td>@item.Email</td>
+                                        <td>@item.Phone</td>
+                                        <td>@item.Subject</td>
+                                        <td>@item.Message</td> 
+                                    </tr>
+                                }
+                            }
+                        </tbody>
+
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>
+@section Styles {
+    @Styles.Render("~/Content/plugins/dataTables/dataTablesStyles")
+}
+
+@section Scripts {
+    @Scripts.Render("~/plugins/dataTables")
+
+
+
+    <script type="text/javascript">
+        $(document).ready(function () {
+
+            $('#dtTable').DataTable({
+                "aaSorting": [],
+                pageLength: 25,
+                dom: '<"html5buttons"B>lTfgitp',
+                buttons: [
+                    { extend: 'copy' },
+                    { extend: 'csv' },
+                    { extend: 'excel', title: 'ExampleFile' },
+                    { extend: 'pdf', title: 'ExampleFile' },
+
+                    {
+                        extend: 'print',
+                        customize: function (win) {
+                            $(win.document.body).addClass('white-bg');
+                            $(win.document.body).css('font-size', '10px');
+
+                            $(win.document.body).find('table')
+                                .addClass('compact')
+                                .css('font-size', 'inherit');
+                        }
+                    }
+                ]
+
+            });
+
+
+
+        });</script>
+}
