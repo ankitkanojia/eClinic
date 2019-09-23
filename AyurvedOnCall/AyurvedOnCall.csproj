@@ -151,10 +151,12 @@
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Controllers\AdminController.cs" />
+    <Compile Include="Controllers\ADoctorController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Helpers\CheckAdminAuthorization.cs" />
     <Compile Include="Helpers\CommonFunctions.cs" />
     <Compile Include="Helpers\CookieHelper.cs" />
     <Compile Include="Helpers\EnumList.cs" />
@@ -207,7 +209,9 @@
       <DependentUpon>DBModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\ViewModels\AdminVm.cs" />
+    <Compile Include="Models\ViewModels\ADoctorVm.cs" />
     <Compile Include="Models\ViewModels\CommonVm.cs" />
+    <Compile Include="Models\ViewModels\DoctorVm.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -2911,6 +2915,9 @@
     <Content Include="Views\Shared\_RightSidebar.cshtml" />
     <Content Include="Views\Shared\_TopNavbar.cshtml" />
     <Content Include="Views\Shared\_Footer.cshtml" />
+    <Content Include="Views\ADoctor\Add.cshtml" />
+    <Content Include="Views\ADoctor\Edit.cshtml" />
+    <Content Include="Views\ADoctor\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

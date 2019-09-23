@@ -1,0 +1,255 @@
+﻿@model Doctor
+@{
+    ViewBag.Title = "Create doctor";
+    Layout = "~/Views/Shared/_adminLayout.cshtml";
+}
+<div class="row wrapper border-bottom white-bg page-heading">
+    <div class="col-lg-10">
+        <h2>Doctor</h2>
+        <ol class="breadcrumb">
+            <li>
+                <a href="@Url.Action("Dashboard", "Admin")">Dashboard</a>
+            </li>
+            <li class="active">
+                <strong>Edit doctor details</strong>
+            </li>
+        </ol>
+    </div>
+    <div class="col-lg-2">
+    </div>
+</div>
+<div class="wrapper wrapper-content  animated fadeInRight">
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="ibox ">
+                @*Title*@
+                <div class="ibox-title">
+                    <h5>Edit doctor details</h5>
+                </div>
+                @*Content*@
+                <div class="ibox-content">
+                    @using (Html.BeginForm("Edit", "ADoctor", FormMethod.Post, new { id = "frm" }))
+                    {
+                        @Html.AntiForgeryToken()
+                        @Html.HiddenFor(s => s.DoctorId)
+
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label>Full name <span class="text-danger">*</span> </label>
+                                    @Html.TextBoxFor(s => s.FullName, new { placeholder = "Dr. Joe Smith", @class = "form-control" })
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label>Select speciality <span class="text-danger">*</span> </label>
+                                    @Html.DropDownListFor(s => s.SpecialityId, CommonFunctions.GetSpecialityDropdownData(), new { @class = "form-control" })
+                                </div>
+                            </div>
+                        </div>
+
+
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label>Email address <span class="text-danger">*</span> </label>
+                                    @Html.TextBoxFor(s => s.Email, new { placeholder = "you@yours.com", @class = "form-control", @readonly = "readonly" })
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="form-group">
+                                    <label>Mobile number </label>
+                                    @Html.TextBoxFor(s => s.Mobile, new { placeholder = "99XXXXXXXX", maxlength = "10", @class = "form-control" })
+                                </div>
+                            </div>
+                            <div class="col-md-2">
+                                <div class="form-group">
+                                    <label>Select gender <span class="text-danger">*</span> </label>
+                                    <div class="radio i-checks">
+                                        @Html.RadioButtonFor(s => s.GenderId, "1", new { @checked = "checked" }) Male &nbsp;&nbsp;
+                                        @Html.RadioButtonFor(s => s.GenderId, "2") Female
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="form-group" id="datediv">
+                                    <label>Select service start date <span class="text-danger">*</span> </label>
+                                    <div class="input-group date">
+                                        <span class="input-group-addon"><i class="fa fa-calendar"></i></span>
+                                        @Html.TextBox("DoctoringStartDate", Model.DoctoringStartDate.ToString("MM/dd/yyyy"), new { @class = "form-control" })
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="form-group">
+                                    <label>University </label>
+                                    @Html.TextBoxFor(s => s.University, new { placeholder = "University of Oxford, USA", @class = "form-control" })
+                                </div>
+                            </div>
+                            <div class="col-md-2">
+                                <div class="form-group">
+                                    <label>Degree <span class="text-danger">*</span> </label>
+                                    @Html.TextBoxFor(s => s.Degree, new { placeholder = "M.D.", @class = "form-control" })
+                                </div>
+                            </div>
+                        </div>
+
+
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label>City </label>
+                                    @Html.TextBoxFor(s => s.City, new { placeholder = "vadodara", @class = "form-control" })
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="col-md-6 no-padding">
+                                    <div class="form-group">
+                                        <label>Latitude <span class="text-danger">*</span> </label>
+                                        @Html.TextBoxFor(s => s.Latitude, new { placeholder = "xx.xxxxxx", @class = "form-control" })
+                                    </div>
+                                </div>
+                                <div class="col-md-6" style="padding-right: 0">
+                                    <div class="form-group">
+                                        <label>Longitude <span class="text-danger">*</span> </label>
+                                        @Html.TextBoxFor(s => s.Longitude, new { placeholder = "xx.xxxxxx", @class = "form-control" })
+                                    </div>
+                                </div>
+                                <small class="text-danger">To know your latitude longitude click <a target="_blank" href="https://www.latlong.net/"><b>here</b></a></small>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label>Registration Number </label>
+                                    @Html.TextBoxFor(s => s.RegistrationNumber, new { placeholder = "Enter valid registration number", @class = "form-control" })
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group" id="dateDobdiv">
+                                    <label>Date of Birth <span class="text-danger">*</span> </label>
+                                    <div class="input-group date">
+                                        <span class="input-group-addon"><i class="fa fa-calendar"></i></span>
+                                        @Html.TextBox("DateOfBirth", "", new { @class = "form-control" })
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div class="form-group">
+                                    <label>Address </label>
+                                    @Html.TextAreaFor(s => s.Address, new { rows = "3", placeholder = "b-1, xyz road, near place", @class = "form-control" })
+                                </div>
+                            </div>
+                        </div>
+
+                        <br />
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div>
+                                    <button class="btn btn-primary" type="submit">Submit</button>
+                                    <button class="btn btn-default" type="reset">Reset</button>
+                                </div>
+                            </div>
+
+                        </div>
+                    }
+
+
+
+                </div>
+            </div>
+
+        </div>
+
+    </div>
+</div>
+
+@section Styles {
+
+    @Styles.Render("~/plugins/dataPickerStyles")
+
+}
+
+
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryui")
+    @Scripts.Render("~/plugins/validate")
+    @Scripts.Render("~/plugins/dataPicker")
+
+
+
+    <script type="text/javascript">
+        $(document).ready(function () {
+
+            $('#datediv .input-group.date').datepicker({
+                todayBtn: "linked",
+                keyboardNavigation: false,
+                forceParse: false,
+                calendarWeeks: true,
+                autoclose: true,
+                format: 'mm/dd/yyyy',
+                endDate: new Date()
+            }).datepicker("setDate", 'now');
+
+            $('#dateDobdiv .input-group.date').datepicker({
+                todayBtn: "linked",
+                keyboardNavigation: false,
+                forceParse: false,
+                calendarWeeks: true,
+                autoclose: true,
+                format: 'mm/dd/yyyy',
+                endDate: new Date()
+            }).datepicker("setDate", 'now');
+
+            $("#frm").validate({
+                rules: {
+                    DateOfBirth: {
+                        required: true
+                    },
+                    FullName: {
+                        required: true
+                    },
+                    SpecialityId: {
+                        required: true 
+                    },
+                    RegistrationNumber: {
+                        required: true,
+                        maxlength: 10
+                    },
+                    Mobile: {
+                        required: true,
+                        number: true,
+                        minlength: 10,
+                        maxlength :10
+                    },
+                    Email: {
+                        required: true,
+                        email: true
+                    },
+                    DoctoringStartDate: {
+                        required: true
+                    },
+                    Degree: {
+                        required: true 
+                    },
+                    Latitude: {
+                        required: true 
+                    },
+                    Longitude: {
+                        required: true 
+                    }
+                }
+            });
+
+        });
+    </script>
+}
