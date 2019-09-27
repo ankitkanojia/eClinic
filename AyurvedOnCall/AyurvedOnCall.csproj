@@ -2926,6 +2926,7 @@
     <Content Include="Views\AEnquiry\Index.cshtml" />
     <Content Include="Views\AChangePassword\Index.cshtml" />
     <Content Include="Views\Patient\Index.cshtml" />
+    <Content Include="Views\Patient\Appointment.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

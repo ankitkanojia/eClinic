@@ -1,0 +1,199 @@
+﻿@model Appointment
+
+@{
+    ViewBag.Title = "Appointment";
+}
+
+<div class="main-content">
+    <!-- Section: inner-header -->
+    <section class="inner-header divider layer-overlay overlay-deep" data-bg-img="../../Content/Client/images/bg/bg7.jpg">
+        <div class="container pt-90 pb-50">
+            <!-- Section Content -->
+            <div class="section-content">
+                <div class="row">
+                    <div class="col-md-12 xs-text-center">
+                        <h3 class="font-28">Appoinment</h3>
+                        <ol class="breadcrumb white mt-10">
+                            <li><a href="@Url.Action("Index", "Home")">Home</a></li>
+                            <li class="active text-theme-colored">Appoinment</li>
+                        </ol>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Section: Appointment -->
+    <section>
+        <div class="container pb-0">
+            <div class="section-content">
+                <div class="row">
+                    <div class="col-md-7">
+                        <h4 class="text-theme-colored title-border mt-0">Make An appointment Now</h4>
+
+                        @using (Html.BeginForm("Appointment", "Patient", FormMethod.Post, new { id = "frm", @class = "form-transparent mt-30" }))
+                        {
+                            @Html.AntiForgeryToken()
+                            <!-- Appointment Form Sart-->
+
+                            <div class="row">
+                                <div class="col-sm-6">
+                                    <div class="form-group mb-10">
+                                        @Html.TextBoxFor(s => s.Fullname, new { placeholder = "Patient Full Name", @class = "form-control" })
+                                    </div>
+                                </div>
+                                <div class="col-sm-6">
+                                    <div class="form-group mb-10">
+                                        @Html.TextBox("AppointmentDate", string.Empty, new { placeholder = "Appoinment Date & Time", @class = "form-control required" })
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="row">
+                                <div class="col-sm-6">
+                                    <div class="form-group mb-10">
+                                        @Html.DropDownListFor(s => s.DoctorId, CommonFunctions.GetDoctorDropdownData(), new { @class = "form-control" })
+                                    </div>
+                                </div>
+                                <div class="col-sm-6">
+                                    <div class="form-group mb-10">
+                                        <label>Select gender <span class="text-danger">*</span> </label>
+                                        <br />
+                                        @Html.RadioButtonFor(s => s.GenderId, "1", new { @checked = "checked" }) Male &nbsp;&nbsp;
+                                        @Html.RadioButtonFor(s => s.GenderId, "2") Female
+                                    </div>
+                                </div>
+                            </div>
+
+
+                            <div class="row">
+                                <div class="col-sm-6">
+                                    <div class="form-group mb-10">
+                                        @Html.TextBoxFor(s => s.Mobile, new { placeholder = "Mobile Number", @class = "form-control" })
+                                    </div>
+                                </div>
+                                <div class="col-sm-6">
+                                    <div class="form-group mb-10">
+                                        @Html.TextBox("DateOfBirth", string.Empty, new { placeholder = "Date of Birth", @class = "form-control required" })
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="row">
+                                <div class="col-sm-6">
+                                    <div class="form-group mb-10">
+                                        @Html.TextBoxFor(s => s.Email, new { placeholder = "Email address", @class = "form-control" })
+                                    </div>
+                                </div>
+                                <div class="col-sm-6">
+                                    <div class="form-group mb-10">
+                                        @Html.TextBoxFor(s => s.Allergies, new { placeholder = "Allergies (if any)", @class = "form-control" })
+                                    </div>
+                                </div>
+                            </div>
+
+
+                            <div class="form-group mb-10">
+                                @Html.TextAreaFor(s => s.Complaint, new { @class = "form-control required", @placeholder = "Enter complaint", @rows = "5" })
+                            </div>
+                            <div class="form-group mb-0 mt-20">
+                                <input id="form_botcheck" name="form_botcheck" class="form-control" type="hidden" value="">
+                                <button type="submit" class="btn btn-dark btn-theme-colored btn-lg btn-flat" data-loading-text="Please wait...">Submit Now</button>
+                            </div>
+                        }
+
+                    </div>
+                    <div class="col-md-5">
+                        <img alt="" src="~/Content/Client/images/photos/1.png" class="img-responsive img-fullwidth">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+    <!-- Section: funfact -->
+    <section class="divider parallax layer-overlay overlay-light" data-stellar-background-ratio="0.5" data-bg-img="../Content/Client/images/bg/bg1.jpg">
+        <div class="container pt-120 pb-120">
+            <div class="section-content">
+                <div class="row">
+                    <div class="col-xs-12 col-sm-6 col-md-3 mb-md-50">
+                        <div class="funfact text-center">
+                            <a href="#"> <i class="icon-heart36 text-theme-colored font-60"></i></a>
+                            <h5 class="number text-theme-colored font-32">19100+</h5>
+                            <h6 class="title text-gray font-16">Happy Patients</h6>
+                        </div>
+                    </div>
+                    <div class="col-xs-12 col-sm-6 col-md-3 mb-md-50">
+                        <div class="funfact text-center">
+                            <a href="#"> <i class="icon-medical51 text-theme-colored font-60"></i></a>
+                            <h5 class="number text-theme-colored font-32">129</h5>
+                            <h6 class="title text-gray font-16">Qualified Doctors</h6>
+                        </div>
+                    </div>
+                    <div class="col-xs-12 col-sm-6 col-md-3 mb-md-50">
+                        <div class="funfact text-center">
+                            <a href="#"> <i class="icon_building text-theme-colored font-60"></i></a>
+                            <h5 class="number text-theme-colored font-32">850+</h5>
+                            <h6 class="title text-gray font-16">Clinic Rooms</h6>
+                        </div>
+                    </div>
+                    <div class="col-xs-12 col-sm-6 col-md-3 mb-md-50">
+                        <div class="funfact text-center">
+                            <a href="#"> <i class="icon_gift_alt text-theme-colored font-60"></i></a>
+                            <h5 class="number text-theme-colored font-32">456</h5>
+                            <h6 class="title text-gray font-16">Awards Won</h6>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+</div>
+@section Scripts {
+    @Scripts.Render("~/plugins/validate")
+
+    <script type="text/javascript">
+        $(document).ready(function () {
+
+            $("#AppointmentDate").datetimepicker({
+                minDate: new Date()
+            });
+
+            $("#DateOfBirth").datepicker({
+                endDate: new Date()
+            });
+
+            $("#frm").validate({
+                rules: {
+
+                    Email: {
+                        required: true,
+                        email: true
+                    },
+                    Fullname: {
+                        required: true
+                    },
+                    AppointmentDate: {
+                        required: true
+                    },
+                    DoctorId: {
+                        required: true
+                    },
+                    Mobile: {
+                        required: true,
+                        number: true,
+                        minlength: 10,
+                        maxlength :10
+                    },
+                    DateOfBirth: {
+                        required: true
+                    },
+                    Complaint: {
+                        required: true
+                    }
+                }
+            });
+        });
+    </script>
+}
