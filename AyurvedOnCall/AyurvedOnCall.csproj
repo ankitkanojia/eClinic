@@ -150,6 +150,7 @@
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="Controllers\AChangePasswordController.cs" />
     <Compile Include="Controllers\AdminController.cs" />
     <Compile Include="Controllers\ADoctorController.cs" />
     <Compile Include="Controllers\AEnquiryController.cs" />
@@ -2922,6 +2923,7 @@
     <Content Include="Views\ADoctor\Edit.cshtml" />
     <Content Include="Views\ADoctor\Index.cshtml" />
     <Content Include="Views\AEnquiry\Index.cshtml" />
+    <Content Include="Views\AChangePassword\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
