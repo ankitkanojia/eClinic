@@ -1,0 +1,62 @@
+﻿
+@{
+    ViewBag.Title = "Index";
+}
+
+<div class="main-content">
+
+
+    <!-- divider: what makes us different -->
+    <section class="divider bg-lightest">
+        <div class="container">
+            <div class="section-content text-center">
+                <div class="row">
+                    <div class="col-md-12">
+                        <div id="full-event-calendar"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+</div>
+
+<script>
+
+
+
+    function GetPatientCalender() {
+        $.ajax({
+            url: '@Url.Action("GetDoctorCalender", "Patient")',
+            type: "get",
+            success: function (data) {
+                if (data.status === true) {
+                    console.log(data.data);
+                    $('#full-event-calendar').fullCalendar({
+                        header: {
+                            left: 'prev,next today',
+                            center: 'title',
+                            right: 'month,agendaWeek,agendaDay'
+                        },
+                        defaultDate: $('#full-event-calendar').fullCalendar('today'),
+                        selectable: true,
+                        selectHelper: true,
+
+                        editable: true,
+                        eventLimit: true, // allow "more" link when too many events
+                        events: data.data
+                    });
+                }
+            }
+        });
+    }
+
+    $(document).ready(function() {
+
+        GetPatientCalender();
+
+    });
+
+
+
+
+</script>
