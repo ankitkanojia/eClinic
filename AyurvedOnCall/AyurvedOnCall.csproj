@@ -155,7 +155,6 @@
     <Compile Include="Controllers\ADoctorController.cs" />
     <Compile Include="Controllers\AEnquiryController.cs" />
     <Compile Include="Controllers\APatientController.cs" />
-    <Compile Include="Controllers\DoctorController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\PatientController.cs" />
     <Compile Include="Global.asax.cs">
@@ -2928,8 +2927,6 @@
     <Content Include="Views\AChangePassword\Index.cshtml" />
     <Content Include="Views\Patient\Index.cshtml" />
     <Content Include="Views\Patient\Appointment.cshtml" />
-    <Content Include="Views\Doctor\Index.cshtml" />
-    <Content Include="Views\Doctor\Appointment.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
