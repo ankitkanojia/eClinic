@@ -2929,6 +2929,7 @@
     <Content Include="Views\Patient\Index.cshtml" />
     <Content Include="Views\Patient\Appointment.cshtml" />
     <Content Include="Views\Doctor\Index.cshtml" />
+    <Content Include="Views\Doctor\Appointment.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

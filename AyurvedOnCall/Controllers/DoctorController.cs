@@ -31,5 +31,10 @@ namespace AyurvedOnCall.Controllers
             RegenerateTempData();
             return View();
         }
+
+        public ActionResult Appointment()
+        {
+            return View();
+        }
     }
 }
