@@ -339,5 +339,148 @@ namespace AyurvedOnCall.Controllers
         }
 
         #endregion
+
+        #region --> Availablility Slab
+        public ActionResult AvailableSlab()
+        {
+            try
+            {
+                using (_dbEntities)
+                {
+                    RegenerateTempData();
+
+                    long doctorId = 0;
+                    var userid = CookieHelper.Get(StaticValues.SessionUserId);
+                    if (!string.IsNullOrWhiteSpace(userid))
+                    {
+                        doctorId = Convert.ToInt64(userid);
+                    }
+
+                    var doctor = _dbEntities.Doctors.Find(doctorId);
+
+                    if (doctor != null)
+                    {
+                        var availableSlabVm = new AvailableSlabVm
+                        {
+                            Slabs = new List<AvailableSlabListVm>(),
+                            DoctorName = doctor.FullName,
+                            DoctorId = doctor.DoctorId
+                        };
+
+                        var availableSlabList = doctor.AvailableSlabs.OrderByDescending(m => m.CreatedDate).Select(k => new AvailableSlabListVm
+                        {
+                            AvailableSlabId = k.AvailableSlabId,
+                            SlabTime = k.IsAllDay ? "All Day" : k.StartTime + " To " + k.EndTime
+                        }).ToList();
+
+                        if (!availableSlabList.Any())
+                        {
+                            availableSlabList = new List<AvailableSlabListVm>();
+                        }
+
+                        availableSlabVm.Slabs = availableSlabList;
+
+                        return View(availableSlabVm);
+                    }
+
+                    TempData["Error"] = "Your are logout. Please login again";
+                    return RedirectToAction("Index", "Home");
+                }
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e.Message);
+                throw;
+            }
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult AvailableSlab(AvailableSlabVm data)
+        {
+            try
+            {
+                using (_dbEntities)
+                {
+                    var availableSlab = new AvailableSlab
+                    {
+                        IsAllDay = data.IsAllDay,
+                        CreatedDate = DateTime.Now
+                    };
+                    if (!data.IsAllDay)
+                    {
+                        availableSlab.StartTime = data.StartTime;
+                        availableSlab.EndTime = data.EndTime;
+                    }
+                    else
+                    {
+                        availableSlab.StartTime = string.Empty;
+                        availableSlab.EndTime = string.Empty;
+                    }
+                    availableSlab.DoctorId = data.DoctorId;
+
+                    var exitingAvailableSlab = _dbEntities.AvailableSlabs.Where(k => k.DoctorId == data.DoctorId).ToList();
+                    if (data.IsAllDay)
+                    {
+                        if (exitingAvailableSlab.Count > 0)
+                        {
+                            _dbEntities.AvailableSlabs.RemoveRange(exitingAvailableSlab);
+                        }
+                    }
+                    else
+                    {
+                        if (exitingAvailableSlab.Count == 1)
+                        {
+                            var fod = exitingAvailableSlab.FirstOrDefault();
+
+                            if (fod != null && fod.IsAllDay)
+                            {
+                                _dbEntities.AvailableSlabs.RemoveRange(exitingAvailableSlab);
+                            }
+                        }
+                    }
+                    _dbEntities.AvailableSlabs.Add(availableSlab);
+                    _dbEntities.SaveChanges();
+                    TempData["Success"] = "Slab added successfully.";
+                }
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e.Message);
+                throw;
+            }
+
+            return RedirectToAction("AvailableSlab", "Doctor");
+        }
+
+        [HttpGet]
+        public ActionResult Delete(long id)
+        {
+            try
+            {
+                using (_dbEntities)
+                {
+                    var availableSlabs = _dbEntities.AvailableSlabs.Find(id);
+                    if (availableSlabs != null)
+                    {
+                        _dbEntities.AvailableSlabs.Remove(availableSlabs);
+                        _dbEntities.SaveChanges();
+                        TempData["Success"] = "Slab deleted successfully.";
+                    }
+                    else
+                    {
+                        TempData["Success"] = "Slab not deleted successfully.";
+                    }
+
+                    return RedirectToAction("AvailableSlab", "Doctor");
+                }
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e.Message);
+                throw;
+            }
+        }
+        #endregion
     }
 }
