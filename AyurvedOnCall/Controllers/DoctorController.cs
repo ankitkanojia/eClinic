@@ -230,5 +230,114 @@ namespace AyurvedOnCall.Controllers
 
         }
         #endregion
+
+        #region --> Appointment
+        [CheckDoctorAuthorization]
+        public ActionResult Appointments()
+        {
+            try
+            {
+                using (_dbEntities)
+                {
+                    RegenerateTempData();
+                    var data = _dbEntities.Appointments.Where(s => !s.IsDelete).ToList();
+                    return View(data);
+                }
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e);
+                throw;
+            }
+        }
+
+        [CheckDoctorAuthorization]
+        public ActionResult AcceptAppointment(long id)
+        {
+            try
+            {
+                using (_dbEntities)
+                {
+                    var data = _dbEntities.Appointments.Find(id);
+
+                    if (data != null)
+                    {
+                        data.IsConfirm = true;
+                        _dbEntities.Entry(data).State = System.Data.Entity.EntityState.Modified;
+                        _dbEntities.SaveChanges();
+
+
+                        //Send a mail to patient
+                        if (Request.Url != null)
+                        {
+                            var replacements = new Dictionary<string, string>
+                            {
+                                { "#name#", data.Fullname},
+                                { "#date#", data.AppointmentDate.ToString("dd-MM-yyyy HH:mm tt")},
+                                { "#complaint#", data.Complaint}
+                            };
+                            SendgridEmailHelpers.SendTempleteEmail((int)EnumList.EmailTemplete.AppointmentAccept, data.Email, data.Fullname, replacements);
+                        }
+
+                        TempData["Success"] = "Appointment accepted successfully";
+                    }
+                    else
+                    {
+                        TempData["Error"] = "Appointment details not found";
+                    }
+                    return RedirectToAction("Appointments");
+                }
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e);
+                throw;
+            }
+        }
+
+        [CheckDoctorAuthorization]
+        public ActionResult RejectAppointment(long id)
+        {
+            try
+            {
+                using (_dbEntities)
+                {
+                    var data = _dbEntities.Appointments.Find(id);
+
+                    if (data != null)
+                    {
+                        data.IsRejected = true;
+                        _dbEntities.Entry(data).State = System.Data.Entity.EntityState.Modified;
+                        _dbEntities.SaveChanges();
+
+                        //Send a mail to patient
+                        if (Request.Url != null)
+                        {
+                            var replacements = new Dictionary<string, string>
+                            {
+                                { "#name#", data.Fullname},
+                                { "#date#", data.AppointmentDate.ToString("dd-MM-yyyy HH:mm tt")},
+                                { "#complaint#", data.Complaint}
+                            };
+                            SendgridEmailHelpers.SendTempleteEmail((int)EnumList.EmailTemplete.AppointmentReject, data.Email, data.Fullname, replacements);
+                        }
+
+                        TempData["Success"] = "Appointment rejected successfully";
+                    }
+                    else
+                    {
+                        TempData["Error"] = "Appointment details not found";
+                    }
+                    return RedirectToAction("Appointments");
+                }
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e);
+                throw;
+            }
+        }
+
+        #endregion
     }
 }

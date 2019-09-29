@@ -1,0 +1,89 @@
+﻿@model List<Appointment>
+
+@{
+    ViewBag.Title = "Appointments";
+}
+
+<div class="main-content">
+    <section class="divider">
+        <div class="container" style="margin-top: 0 !important; padding-top: 0 !important">
+            <div class="row">
+                <div class="col-md-12 mt-40">
+
+                    <h4 class="title">Appointments</h4>
+                    <hr />
+                    <div data-example-id="hoverable-table" class="bs-example">
+                        <table class="table table-hover">
+                            <thead>
+                                <tr>
+                                    <th>Name</th>
+                                    <th>Date</th>
+                                    <th>Mobile</th>
+                                    <th>Date of Birth</th>
+                                    <th>Gender</th>
+                                    <th>Allergies</th>
+                                    <th>Complaint</th>
+                                    <th>Status</th>
+                                    <th>Action</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @if (Model.Any())
+                                {
+                                    foreach (var item in Model.OrderByDescending(s => s.AppointmentDate))
+                                    {
+                                        <tr>
+                                            <td>@item.Fullname</td>
+                                            <td>@item.AppointmentDate.ToString("dd-MM-yyyy HH:mm tt")</td>
+                                            <td>@item.Mobile</td>
+                                            <td>@item.DateOfBirth.ToShortDateString()</td>
+                                            <td>
+                                                @if (item.GenderId == "1")
+                                                {
+                                                    @: Male
+                                                }
+                                                else
+                                                {
+                                                    @: Female
+                                                }
+                                            </td>
+                                            <td>@item.Allergies</td>
+                                            <td>@item.Complaint</td>
+                                            <td>
+                                                @if (item.IsRejected)
+                                                {
+                                                    <span class="text-danger">Rejected</span>
+                                                }
+                                                else
+                                                {
+                                                    if (item.IsConfirm)
+                                                    {
+                                                        <span class="text-success">Confirm</span>
+                                                    }
+                                                    else
+                                                    {
+                                                        <span class="text-info">Waiting for confirmation</span>
+                                                    }
+                                                }
+                                            </td>
+                                            <td>
+                                                <a href="@Url.Action("AcceptAppointment", "Doctor", new{id = item.AppointmentId})" class="btn btn-sm btn-success">
+                                                    <i class="fa fa-check"></i>
+                                                </a>
+                                                <a href="@Url.Action("RejectAppointment", "Doctor", new{id = item.AppointmentId})" class="btn btn-sm btn-danger">
+                                                    <i class="fa fa-times"></i>
+                                                </a>
+                                            </td>
+                                        </tr>
+                                    }
+                                }
+                            </tbody>
+
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+</div>
+
