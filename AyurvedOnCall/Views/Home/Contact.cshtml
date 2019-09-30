@@ -1,0 +1,156 @@
+﻿@model Enquiry
+
+@{
+    ViewBag.Title = "Contact";
+}
+
+<div class="main-content">
+    <!-- Section: inner-header -->
+    <section class="inner-header divider layer-overlay overlay-deep" data-bg-img="../Content/Client/images/bg/bg5.jpg">
+        <div class="container pt-90 pb-50">
+            <!-- Section Content -->
+            <div class="section-content">
+                <div class="row">
+                    <div class="col-md-12 xs-text-center">
+                        <h2 class="font-28">Contact</h2>
+                        <ol class="breadcrumb white mt-10">
+                            <li><a href="@Url.Action("Index", "Home")">Home</a></li>
+                            <li class="active text-theme-colored">Contact</li>
+                        </ol>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Divider: Contact -->
+    <section class="divider">
+        <div class="container">
+            <div class="row pt-30">
+                <div class="col-md-4">
+                    <div class="row">
+                        <div class="col-xs-12 col-sm-12 col-md-12">
+                            <div class="icon-box left media bg-deep p-30 mb-20">
+                                <a class="media-left pull-left" href="#"> <i class="pe-7s-map-2 text-theme-colored"></i></a>
+                                <div class="media-body">
+                                    <strong>OUR OFFICE LOCATION</strong>
+                                    <p>#405, Waghodiya Road, Vadodata, GJ-India.</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-xs-12 col-sm-6 col-md-12">
+                            <div class="icon-box left media bg-deep p-30 mb-20">
+                                <a class="media-left pull-left" href="#"> <i class="pe-7s-call text-theme-colored"></i></a>
+                                <div class="media-body">
+                                    <strong>OUR CONTACT NUMBER</strong>
+                                    <p>+91 96240 61551</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-xs-12 col-sm-6 col-md-12">
+                            <div class="icon-box left media bg-deep p-30 mb-20">
+                                <a class="media-left pull-left" href="#"> <i class="pe-7s-mail text-theme-colored"></i></a>
+                                <div class="media-body">
+                                    <strong>OUR CONTACT E-MAIL</strong>
+                                    <p>ayurdaxnaresh@gmail.com</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-xs-12 col-sm-6 col-md-12">
+                            <div class="icon-box left media bg-deep p-30 mb-20">
+                                <a class="media-left pull-left" href="#"> <i class="fa fa-skype text-theme-colored"></i></a>
+                                <div class="media-body">
+                                    <strong>Make a Video Call</strong>
+                                    <p>ayurvedoncall</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-8">
+                    <h3 class="mt-0 mb-30">Interested in discussing?</h3>
+                    <!-- Contact Form -->
+                    @using (Html.BeginForm("Contact", "Home", FormMethod.Post, new { id = "frm", @class = "clearfix" }))
+                    {
+                        @Html.AntiForgeryToken()
+                        <div class="row">
+                            <div class="col-sm-6">
+                                <div class="form-group">
+                                    <label for="Name">Name <small>*</small></label>
+                                    @Html.TextBoxFor(s => s.Name, new { @class = "form-control" })
+                                </div>
+                            </div>
+                            <div class="col-sm-6">
+                                <div class="form-group">
+                                    <label for="Email">Email <small>*</small></label>
+                                    @Html.TextBoxFor(s => s.Email, new { @class = "form-control" })
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-sm-6">
+                                <div class="form-group">
+                                    <label for="Subject">Subject <small>*</small></label>
+                                    @Html.TextBoxFor(s => s.Subject, new { @class = "form-control" })
+                                </div>
+                            </div>
+                            <div class="col-sm-6">
+                                <div class="form-group">
+                                    <label for="Phone">Phone</label>
+                                    @Html.TextBoxFor(s => s.Phone, new { @class = "form-control" })
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="Message">Message</label>
+                            @Html.TextAreaFor(s => s.Message, new { @class = "form-control", @rows = "5" })
+                        </div>
+                        <div class="form-group">
+                            <button type="submit" class="btn btn-dark btn-theme-colored btn-flat mr-5">Send your message</button>
+                        </div>
+                    }
+                </div>
+            </div>
+        </div>
+    </section>
+
+    
+     
+</div>
+
+@section Scripts {
+    @Scripts.Render("~/plugins/validate")
+
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $("#frm").validate({
+                rules: {
+
+                    Email: {
+                        required: true,
+                        email: true
+                    },
+                    Name: {
+                        required: true
+                    },
+                    Subject: {
+                        required: true
+                    },
+                    Message: {
+                        required: true
+                    },
+                    Phone: {
+                        number: true,
+                        minlength: 10,
+                        maxlength :10
+                    }
+                }
+            });
+
+
+
+        });
+    </script>
+}
