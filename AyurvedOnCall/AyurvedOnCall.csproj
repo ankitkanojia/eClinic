@@ -168,6 +168,7 @@
     <Compile Include="Helpers\HMTLHelperExtensions.cs" />
     <Compile Include="Helpers\SendgridEmailHelpers.cs" />
     <Compile Include="Helpers\StaticValues.cs" />
+    <Compile Include="Helpers\Utilities.cs" />
     <Compile Include="Models\Appointment.cs">
       <DependentUpon>DBModel.tt</DependentUpon>
     </Compile>
