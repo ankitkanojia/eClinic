@@ -216,8 +216,10 @@
     <Compile Include="Models\ViewModels\AdminVm.cs" />
     <Compile Include="Models\ViewModels\ADoctorVm.cs" />
     <Compile Include="Models\ViewModels\APatientVm.cs" />
+    <Compile Include="Models\ViewModels\AvailableSlab.cs" />
     <Compile Include="Models\ViewModels\CommonVm.cs" />
     <Compile Include="Models\ViewModels\DoctorVm.cs" />
+    <Compile Include="Models\ViewModels\MyHolidayVm.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
