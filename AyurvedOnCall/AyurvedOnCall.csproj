@@ -969,6 +969,7 @@
     <Content Include="Content\Client\plugins\izitoast\js\iziToast.js" />
     <Content Include="Content\Client\plugins\izitoast\js\iziToast.min.js" />
     <Content Include="Content\email.css" />
+    <Content Include="Content\fevicon.ico" />
     <Content Include="Content\GARBHSANSKAR.png" />
     <Content Include="Content\landing\avatar_all.png" />
     <Content Include="Content\landing\header_one.jpg" />
