@@ -150,10 +150,14 @@
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="Controllers\AChangePasswordController.cs" />
     <Compile Include="Controllers\AdminController.cs" />
     <Compile Include="Controllers\ADoctorController.cs" />
     <Compile Include="Controllers\AEnquiryController.cs" />
+    <Compile Include="Controllers\APatientController.cs" />
+    <Compile Include="Controllers\DoctorController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\PatientController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -164,6 +168,7 @@
     <Compile Include="Helpers\HMTLHelperExtensions.cs" />
     <Compile Include="Helpers\SendgridEmailHelpers.cs" />
     <Compile Include="Helpers\StaticValues.cs" />
+    <Compile Include="Helpers\Utilities.cs" />
     <Compile Include="Models\Appointment.cs">
       <DependentUpon>DBModel.tt</DependentUpon>
     </Compile>
@@ -211,8 +216,11 @@
     </Compile>
     <Compile Include="Models\ViewModels\AdminVm.cs" />
     <Compile Include="Models\ViewModels\ADoctorVm.cs" />
+    <Compile Include="Models\ViewModels\APatientVm.cs" />
+    <Compile Include="Models\ViewModels\AvailableSlab.cs" />
     <Compile Include="Models\ViewModels\CommonVm.cs" />
     <Compile Include="Models\ViewModels\DoctorVm.cs" />
+    <Compile Include="Models\ViewModels\MyHolidayVm.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -961,6 +969,7 @@
     <Content Include="Content\Client\plugins\izitoast\js\iziToast.js" />
     <Content Include="Content\Client\plugins\izitoast\js\iziToast.min.js" />
     <Content Include="Content\email.css" />
+    <Content Include="Content\fevicon.ico" />
     <Content Include="Content\GARBHSANSKAR.png" />
     <Content Include="Content\landing\avatar_all.png" />
     <Content Include="Content\landing\header_one.jpg" />
@@ -2920,9 +2929,14 @@
     <Content Include="Views\ADoctor\Edit.cshtml" />
     <Content Include="Views\ADoctor\Index.cshtml" />
     <Content Include="Views\AEnquiry\Index.cshtml" />
+    <Content Include="Views\AChangePassword\Index.cshtml" />
+    <Content Include="Views\Patient\Index.cshtml" />
+    <Content Include="Views\Patient\Appointment.cshtml" />
+    <Content Include="Views\Doctor\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Views\APatient\" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

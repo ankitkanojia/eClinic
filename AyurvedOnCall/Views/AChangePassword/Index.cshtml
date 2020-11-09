@@ -1,0 +1,98 @@
+﻿
+@{
+    ViewBag.Title = "Change Password";
+    Layout = "~/Views/Shared/_adminLayout.cshtml";
+}
+
+
+<div class="row wrapper border-bottom white-bg page-heading">
+    <div class="col-lg-10">
+        <h2>Change Password</h2>
+        <ol class="breadcrumb">
+            <li>
+                <a href="@Url.Action("Dashboard", "Admin")">Dashboard</a>
+            </li>
+            <li class="active">
+                <strong>Change Password</strong>
+            </li>
+        </ol>
+    </div>
+    <div class="col-lg-2">
+    </div>
+</div>
+<div class="wrapper wrapper-content  animated fadeInRight">
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="ibox ">
+                @*Title*@
+                <div class="ibox-title">
+                    <h5>Change Password</h5>
+                </div>
+                @*Content*@
+                <div class="ibox-content">
+                    @using (Html.BeginForm("Index", "AChangePassword", FormMethod.Post, new { id = "frm" }))
+                    {
+                        @Html.AntiForgeryToken()
+
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label>New Password <span class="text-danger">*</span> </label>
+                                    @Html.Password("Password", string.Empty, new { placeholder = "xxxxx", @class = "form-control" })
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label>Confirm Password <span class="text-danger">*</span> </label>
+                                    @Html.Password("ConfirmPassword", string.Empty, new { placeholder = "xxxxx", @class = "form-control" })
+                                </div>
+                            </div>
+                        </div>
+
+                        <br />
+
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div>
+                                    <button class="btn btn-primary" type="submit">Submit</button>
+                                    <button class="btn btn-default" type="reset">Reset</button>
+                                </div>
+                            </div>
+
+                        </div>
+                    }
+
+
+
+                </div>
+            </div>
+
+        </div>
+
+    </div>
+</div>
+
+
+
+@section Scripts {
+
+    @Scripts.Render("~/plugins/validate")
+
+    <script type="text/javascript">
+        $(document).ready(function () {
+
+            $("#frm").validate({
+                rules: {
+                    Password: {
+                        required: true
+                    },
+                    ConfirmPassword: {
+                        required: true,
+                        equalTo: "#Password"
+                    }
+                }
+            });
+
+        });
+    </script>
+}

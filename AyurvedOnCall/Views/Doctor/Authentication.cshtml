@@ -1,0 +1,282 @@
+﻿@model Doctor
+
+@{
+    ViewBag.Title = "Authentication";
+}
+
+<div class="main-content">
+    <!-- Section: inner-header -->
+    <section class="inner-header divider layer-overlay overlay-deep" data-bg-img="../Content/Client/images/bg/bg5.jpg">
+        <div class="container pt-90 pb-50">
+            <!-- Section Content -->
+            <div class="section-content">
+                <div class="row">
+                    <div class="col-md-12 xs-text-center">
+                        <h2 class="font-28">Doctor Authentication</h2>
+                        <ol class="breadcrumb white mt-10">
+                            <li><a href="@Url.Action("Index", "Home")">Home</a></li>
+                            <li class="active text-theme-colored">Login/Register</li>
+                        </ol>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section>
+        <div class="container">
+            <div class="row">
+                <div class="col-md-4 mb-40">
+                    <div class="icon-box mb-0 p-0">
+                        <a href="#" class="icon  icon-sm pull-left mb-0 mr-10">
+                            <img alt="" src="~/Content/Client/images/flat-color-icons-svg/lock_portrait.svg" title="lock_landscape.svg">
+                        </a>
+                        <h4 class="text-gray pt-10 mt-0 mb-30">Login.</h4>
+                        <hr />
+                    </div>
+                    @using (Html.BeginForm("Login", "Doctor", FormMethod.Post, new { id = "frmLogin", @class = "clearfix" }))
+                    {
+                        @Html.AntiForgeryToken()
+
+
+                        <div class="row">
+                            <div class="form-group col-md-12">
+                                <label for="Email">Email</label>
+                                @Html.TextBoxFor(s => s.Email, new { @class = "form-control required", @placeholder = "you@yours.com" })
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="form-group col-md-12">
+                                <label for="Password">Password</label>
+                                @Html.PasswordFor(s => s.Password, new { @class = "form-control", placeholder = "XXXXX" })
+                            </div>
+                        </div>
+                        <div class="checkbox pull-left mt-15">
+                            <label for="form_checkbox">
+                                <input id="form_checkbox" name="form_checkbox" type="checkbox">
+                                Remember me
+                            </label>
+                        </div>
+                        @*<div class="form-group pull-right mt-10">
+                            <button type="submit" class="btn btn-dark btn-sm">Login</button>
+                        </div>*@
+                        <div class="clear text-center pt-10"> 
+                            <a class="text-theme-colored font-weight-600 font-12" href="@Url.Action("ForgotPassword", "Home")">Forgot Your Password?</a>
+                        </div>
+                      
+                        <div class="clear text-center pt-10">
+                            <button type="submit" class="btn btn-dark btn-lg btn-block no-border mt-15 mb-15">Login</button>
+                        </div>
+
+                    }
+
+                </div>
+                <div class="col-md-7 col-md-offset-1">
+
+                    @using (Html.BeginForm("Registration", "Doctor", FormMethod.Post, new { id = "frmRegistration", @class = "register-form" }))
+                    {
+                        @Html.AntiForgeryToken()
+
+
+                    <div class="icon-box mb-0 p-0">
+                        <a href="#" class="icon icon-sm pull-left mb-0 mr-10">
+                            <img alt="" src="~/Content/Client/images/flat-color-icons-svg/businessman.svg" title="businessman.svg">
+                        </a>
+                        <h4 class="text-gray pt-10 mt-0 mb-30">Don't have a doctor Account? Request Now.</h4>
+                        <hr>
+                    </div>
+                        
+                        <div class="row">
+                            <div class="form-group col-md-6">
+                                <label>Full name <span class="text-danger">*</span> </label>
+                                @Html.TextBoxFor(s => s.FullName, new { placeholder = "Dr. Joe Smith", @class = "form-control" })
+                            </div>
+                            <div class="form-group col-md-6">
+                                <label>Select speciality <span class="text-danger">*</span> </label>
+                                @Html.DropDownListFor(s => s.SpecialityId, CommonFunctions.GetSpecialityDropdownData(), new { @class = "form-control" })
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="form-group col-md-6">
+                                <label>Email address <span class="text-danger">*</span> </label>
+                                @Html.TextBoxFor(s => s.Email, new { placeholder = "you@yours.com", @class = "form-control" })
+                            </div>
+                            <div class="form-group col-md-6">
+                                <label>Mobile number </label>
+                                @Html.TextBoxFor(s => s.Mobile, new { placeholder = "99XXXXXXXX", maxlength = "10", @class = "form-control" })
+                            </div>
+
+                        </div>
+                        <div class="row">
+                            <div class="form-group col-md-6">
+                                <label for="Password">Choose Password</label>
+                                @Html.PasswordFor(s => s.Password, new { @id= "PassReg", @class = "form-control", placeholder = "XXXXX" })
+                            </div>
+                            <div class="form-group col-md-6">
+                                <label>Re-enter Password</label>
+                                @Html.Password("RePassword", string.Empty, new { @class = "form-control", placeholder = "XXXXX" })
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="form-group col-md-6">
+                                <label>Select service start date <span class="text-danger">*</span> </label>
+                                <div class="input-group date">
+                                    <span class="input-group-addon"><i class="fa fa-calendar"></i></span>
+                                    @Html.TextBox("DoctoringStartDate", "", new { @class = "form-control required " })
+                                </div>
+                            </div>
+                            <div class="form-group col-md-6">
+                                <label>Select gender <span class="text-danger">*</span> </label>
+                                <br />
+                                @Html.RadioButtonFor(s => s.GenderId, "1", new { @checked = "checked" }) Male &nbsp;&nbsp;
+                                @Html.RadioButtonFor(s => s.GenderId, "2") Female
+
+                            </div>
+                        </div>
+                        <div class="row"> 
+                            <div class="form-group col-md-6">
+                                <label>University </label>
+                                @Html.TextBoxFor(s => s.University, new { placeholder = "University of Oxford, USA", @class = "form-control" })
+                            </div>
+                            <div class="form-group col-md-6">
+                                <label>Degree <span class="text-danger">*</span> </label>
+                                @Html.TextBoxFor(s => s.Degree, new { placeholder = "M.D.", @class = "form-control" })
+                            </div>
+                        </div>
+                   
+                        <div class="row">
+                            <div class="form-group col-md-6">
+                                <label>City </label>
+                                @Html.TextBoxFor(s => s.City, new { placeholder = "vadodara", @class = "form-control" })
+                            </div>
+                            <div class="form-group col-md-6">
+                                <div class="col-md-6" style="padding-left:0">
+                                    <div class="form-group">
+                                        <label>Latitude <span class="text-danger">*</span> </label>
+                                        @Html.TextBoxFor(s => s.Latitude, new { placeholder = "xx.xxxxxx", @class = "form-control" })
+                                    </div>
+                                </div>
+                                <div class="col-md-6" style="padding-right: 0">
+                                    <div class="form-group">
+                                        <label>Longitude <span class="text-danger">*</span> </label>
+                                        @Html.TextBoxFor(s => s.Longitude, new { placeholder = "xx.xxxxxx", @class = "form-control" })
+                                    </div>
+                                </div>
+                                <small class="text-danger">To know your latitude longitude click <a target="_blank" href="https://www.latlong.net/"><b>here</b></a></small>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="form-group col-md-6">
+                                <label>Registration Number <span class="text-danger">*</span></label>
+                                @Html.TextBoxFor(s => s.RegistrationNumber, new { placeholder = "Enter your valid registration number", @class = "form-control" })
+                            </div>
+                            <div class="form-group col-md-6">
+                                <label>Date of Birth <span class="text-danger">*</span> </label>
+                                <div class="input-group date">
+                                    <span class="input-group-addon"><i class="fa fa-calendar"></i></span>
+                                    @Html.TextBox("DateOfBirth", "", new { @class = "form-control required " })
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="form-group col-md-12">
+                                <label>Address </label>
+                                @Html.TextAreaFor(s => s.Address, new { rows = "3", placeholder = "b-1, xyz road, near place", @class = "form-control" })
+                            </div> 
+                        </div>
+
+
+
+
+                        <div class="form-group">
+                            <button class="btn btn-dark btn-lg btn-block mt-15" type="submit">Submit request</button>
+                        </div>
+
+                    }
+
+
+                </div>
+            </div>
+        </div>
+    </section>
+</div>
+
+@section Scripts {
+    @Scripts.Render("~/plugins/validate")
+
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $("#frmLogin").validate({
+                rules: {
+                    
+                    Email: {
+                        required: true,
+                        email: true
+                    },
+                    Password: {
+                        required: true
+                    } 
+                }
+            });
+
+            $("#DateOfBirth").datepicker({
+                endDate: new Date()
+            });
+
+            $("#DoctoringStartDate").datepicker({
+                endDate: new Date()
+            });
+
+            
+
+            $("#frmRegistration").validate({
+                rules: {
+                    DateOfBirth: {
+                        required: true
+                    },
+                    FullName: {
+                        required: true
+                    },
+                    SpecialityId: {
+                        required: true 
+                    },
+                    RegistrationNumber: {
+                        required: true,
+                        maxlength: 10
+                    },
+                    Mobile: {
+                        required: true,
+                        number: true,
+                        minlength: 10,
+                        maxlength :10
+                    },
+                    Email: {
+                        required: true,
+                        email: true
+                    },
+                    DoctoringStartDate: {
+                        required: true
+                    },
+                    Degree: {
+                        required: true 
+                    },
+                    Latitude: {
+                        required: true 
+                    },
+                    Longitude: {
+                        required: true 
+                    },
+                    Password: {
+                        required: true
+                    },
+                    RePassword: {
+                        required: true,
+                        equalTo: '#PassReg'
+                    }
+                }
+            });
+
+        });
+    </script>
+}

@@ -1,0 +1,142 @@
+﻿@model List<AppointmentVm>
+
+@{
+    ViewBag.Title = "Appointment";
+    Layout = "~/Views/Shared/_adminLayout.cshtml";
+}
+
+
+
+<div class="row wrapper border-bottom white-bg page-heading">
+    <div class="col-lg-10">
+        <h2>Appointment</h2>
+        <ol class="breadcrumb">
+            <li>
+                <a href="@Url.Action("Dashboard", "Admin")">Dashboard</a>
+            </li>
+            <li class="active">
+                <strong>List of Appointment</strong>
+            </li>
+        </ol>
+    </div>
+    <div class="col-lg-2">
+    </div>
+</div>
+
+
+<div class="wrapper wrapper-content animated fadeInRight">
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="ibox float-e-margins">
+                @*Title*@
+                <div class="ibox-title">
+                    <h5>Appointment</h5>
+                </div>
+
+                @*Content*@
+                <div class="ibox-content">
+                    <table class="table table-striped responsive table-bordered table-hover" width="100%" id="dtTable">
+                        <thead>
+                            <tr>
+                                <th>Name</th>
+                                <th>Doctor Name</th>
+                                <th>Date</th>
+                                <th>Mobile</th>
+                                <th>Date of Birth</th>
+                                <th>Gender</th>
+                                <th>Complaint</th>
+                                <th>Status</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @if (Model.Any())
+                            {
+                                foreach (var item in Model.OrderByDescending(s => s.CreatedDate))
+                                {
+                                    <tr>
+                                        <td>@item.Fullname</td>
+                                        <td>@item.DoctorName</td>
+                                        <td>@item.AppointmentDate.ToString("dd-MM-yyyy HH:mm tt")</td>
+                                        <td>@item.Mobile</td>
+                                        <td>@item.DateOfBirth.ToShortDateString()</td>
+                                        <td>
+                                            @if (item.GenderId == "1")
+                                            {
+                                                @: Male
+                                            }
+                                            else
+                                            {
+                                                @: Female
+                                            }
+                                        </td>
+                                        <td>@item.Complaint</td>
+                                        <td>
+                                            @if (item.IsRejected)
+                                            {
+                                                <span class="text-danger">Rejected</span>
+                                            }
+                                            else
+                                            {
+                                                if (item.IsConfirm)
+                                                {
+                                                    <span class="text-success">Confirm</span>
+                                                }
+                                                else
+                                                {
+                                                    <span class="text-info">Waiting for confirmation</span>
+                                                }
+                                            }
+                                        </td>
+                                    </tr>
+                                }
+                            }
+                        </tbody>
+
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>
+@section Styles {
+    @Styles.Render("~/Content/plugins/dataTables/dataTablesStyles")
+}
+
+@section Scripts {
+    @Scripts.Render("~/plugins/dataTables")
+
+
+
+    <script type="text/javascript">
+        $(document).ready(function () {
+
+            $('#dtTable').DataTable({
+                "aaSorting": [],
+                pageLength: 25,
+                dom: '<"html5buttons"B>lTfgitp',
+                buttons: [
+                    { extend: 'copy' },
+                    { extend: 'csv' },
+                    { extend: 'excel', title: 'ExampleFile' },
+                    { extend: 'pdf', title: 'ExampleFile' },
+
+                    {
+                        extend: 'print',
+                        customize: function (win) {
+                            $(win.document.body).addClass('white-bg');
+                            $(win.document.body).css('font-size', '10px');
+
+                            $(win.document.body).find('table')
+                                .addClass('compact')
+                                .css('font-size', 'inherit');
+                        }
+                    }
+                ]
+
+            });
+
+
+
+        });</script>
+}

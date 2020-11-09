@@ -1,0 +1,155 @@
+﻿@model AvailableSlabVm
+@{
+    ViewBag.Title = "Available Slab";
+}
+
+<link href="~/Content/plugins/clockpicker/clockpicker.css" rel="stylesheet" />
+
+<div class="main-content">
+    <!-- Section: inner-header -->
+    <section class="inner-header divider layer-overlay overlay-deep" data-bg-img="../../Content/Client/images/bg/bg5.jpg">
+        <div class="container pt-90 pb-50">
+            <!-- Section Content -->
+            <div class="section-content">
+                <div class="row">
+                    <div class="col-md-12 xs-text-center">
+                        <h3 class="font-28">Available Slab</h3>
+                        <ol class="breadcrumb white mt-10">
+                            <li><a href="@Url.Action("Index", "Home")">Home</a></li>
+                            <li class="active text-theme-colored">Available Slab</li>
+                        </ol>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Section: Appointment -->
+    <section>
+        <div class="container pb-0">
+            <div class="section-content">
+                <div class="row">
+                    <div class="col-md-7">
+                        <h4 class="text-theme-colored title-border mt-0">Set Available Slab</h4>
+
+                        @using (Html.BeginForm("AvailableSlab", "Doctor", FormMethod.Post, new { id = "frmSlab", @class = "form-transparent mt-30" }))
+                        {
+                            @Html.AntiForgeryToken()
+                            @Html.Hidden("StartTime", DateTime.Now.ToString("hh:mm tt"))
+                            @Html.Hidden("EndTime", DateTime.Now.ToString("hh:mm tt"))
+                            @Html.HiddenFor(m => m.DoctorId)
+
+                            <!-- Appointment Form Sart-->
+
+                            <div class="row">
+                                <div class="col-sm-6" style="background-color:#f9f9f9;">
+                                    <div class="form-group mb-10" style="margin-top:5% !important">
+                                        <label>Slab Type <span class="text-danger">*</span> </label>
+                                        <br />
+                                        @Html.RadioButtonFor(s => s.IsAllDay, true, new { @checked = "true", @id = "rdbAll" }) All Day &nbsp;&nbsp;
+                                        @Html.RadioButtonFor(s => s.IsAllDay, false) Specific Time
+                                    </div>
+
+                                    <div class="form-group mb-10">
+                                        <label>From Time</label>
+                                        <br />
+                                        @Html.TextBoxFor(s => s.StartTime, new { placeholder = "From", @class = "form-control required clockpicker", @readonly = "readonly", @id = "txtStartTime", @disabled = "disabled" })
+                                    </div>
+
+                                    <div class="form-group mb-10">
+                                        <label>To Time</label>
+                                        <br />
+                                        @Html.TextBoxFor(s => s.EndTime, new { placeholder = "To", @class = "form-control required clockpicker", @readonly = "readonly", @id = "txtEndTime", @disabled = "disabled" })
+                                    </div>
+                                    <div class="form-group mb-0 mt-20" style="margin-bottom:5% !important">
+                                        <input id="form_botcheck" name="form_botcheck" class="form-control" type="hidden" value="">
+                                        <button type="button" onclick="SaveSlab()" class="btn btn-dark btn-theme-colored btn-lg btn-flat" data-loading-text="Please wait...">Submit Now</button>
+                                    </div>
+                                </div>
+                                <div class="col-sm-6">
+                                    <div class="table-responsive">
+                                        <table class="table table-striped table-bordered table-hover table-data">
+                                            <tbody>
+                                                <tr>
+                                                    <th class="text-center">Time Slabs</th>
+                                                    <th width="20" class="text-center">Action</th>
+                                                </tr>
+                                                @if (Model.Slabs.Any())
+                                                {
+                                                    foreach (var item in Model.Slabs)
+                                                    {
+                                                        <tr>
+                                                            <th style="vertical-align: middle;" class="text-center"><button class="btn btn-success btn-xs">@item.SlabTime</button></th>
+                                                            <th>
+                                                                <div class="text-center">
+                                                                    <a href="@Url.Action("Delete", "Doctor", new { id = item.AvailableSlabId })"><i class="fa fa-trash icnclr-red" style="font-size:1.5em;margin: 10px;"></i></a>
+                                                                </div>
+                                                            </th>
+                                                        </tr>
+                                                    }
+                                                }
+                                                else
+                                                {
+                                                    <tr><th class="text-center" colspan="2">No Record Found..</th></tr>
+                                                }
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+                            </div>
+                        }
+
+                    </div>
+                    <div class="col-md-5">
+                        <img alt="" src="~/Content/Client/images/photos/1.png" class="img-responsive img-fullwidth">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+     
+</div>
+
+<script src="~/Scripts/plugins/clockpicker/clockpicker.js"></script>
+<script type="text/javascript">
+
+    $('.clockpicker').clockpicker({
+        autoclose: true,
+        align: 'right',
+        twelvehour: true
+    });
+
+</script>
+
+<script>
+
+    $(document).ready(function () {
+        $("#rdbAll").prop("checked", true);
+        $("#li_Inquiry").removeClass("active");
+        $("#li_Workspace").addClass("active");
+        $('input[type=radio][name=IsAllDay]').change(function () {
+
+            if (this.value == "True") {
+                $("#txtStartTime").attr("disabled", true);
+                $("#txtEndTime").attr("disabled", true);
+            } else {
+                $("#txtStartTime").removeAttr("disabled");
+                $("#txtEndTime").removeAttr("disabled");
+            }
+
+            $("#StartTime").val('');
+            $("#EndTime").val('');
+            $('#txtStartTime').val('');
+            $('#txtEndTime').val('');
+        });
+    });
+
+    var SaveSlab = function () {
+        $("#StartTime").val($('#txtStartTime').val());
+        $("#EndTime").val($('#txtEndTime').val());
+        $("#frmSlab").submit();
+    };
+
+</script>
+

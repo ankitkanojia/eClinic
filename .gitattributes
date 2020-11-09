@@ -1,3 +1,4 @@
+*.html linguist-language=html
 *.java linguist-detectable=false
 *.js linguist-detectable=false
 *.htm linguist-detectable=false

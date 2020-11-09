@@ -1,0 +1,170 @@
+﻿@model UserMaster
+
+@{
+    ViewBag.Title = "Authentication";
+}
+
+<div class="main-content">
+    <!-- Section: inner-header -->
+    <section class="inner-header divider layer-overlay overlay-deep" data-bg-img="../Content/Client/images/bg/bg5.jpg">
+        <div class="container pt-90 pb-50">
+            <!-- Section Content -->
+            <div class="section-content">
+                <div class="row">
+                    <div class="col-md-12 xs-text-center">
+                        <h2 class="font-28">Patient Authentication</h2>
+                        <ol class="breadcrumb white mt-10">
+                            <li><a href="@Url.Action("Index", "Home")">Home</a></li>
+                            <li class="active text-theme-colored">Login/Register</li>
+                        </ol>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section>
+        <div class="container">
+            <div class="row">
+                <div class="col-md-4 mb-40">
+                    <div class="icon-box mb-0 p-0">
+                        <a href="#" class="icon  icon-sm pull-left mb-0 mr-10">
+                            <img alt="" src="~/Content/Client/images/flat-color-icons-svg/lock_portrait.svg" title="lock_landscape.svg">
+                        </a>
+                        <h4 class="text-gray pt-10 mt-0 mb-30">Login.</h4>
+                        <hr />
+                    </div>
+                    @using (Html.BeginForm("Login", "Home", FormMethod.Post, new { id = "frmLogin", @class = "clearfix" }))
+                    {
+                        @Html.AntiForgeryToken()
+
+
+                        <div class="row">
+                            <div class="form-group col-md-12">
+                                <label for="Email">Email</label>
+                                @Html.TextBoxFor(s => s.Email, new { @class = "form-control", @placeholder = "you@yours.com" })
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="form-group col-md-12">
+                                <label for="Password">Password</label>
+                                @Html.PasswordFor(s => s.Password, new { @class = "form-control", placeholder = "XXXXX" })
+                            </div>
+                        </div>
+                        <div class="checkbox pull-left mt-15">
+                            <label for="form_checkbox">
+                                <input id="form_checkbox" name="form_checkbox" type="checkbox">
+                                Remember me
+                            </label>
+                        </div>
+                        <div class="form-group pull-right mt-10">
+                            <button type="submit" class="btn btn-dark btn-sm">Login</button>
+                        </div>
+                        <div class="clear text-center pt-10">
+                            <a class="text-theme-colored font-weight-600 font-12" href="@Url.Action("ForgotPassword", "Home")">Forgot Your Password?</a>
+                        </div>
+                        @*<div class="clear text-center pt-10">
+                                <a class="btn btn-dark btn-lg btn-block no-border mt-15 mb-15" href="#" data-bg-color="#3b5998">Login with facebook</a>
+                            </div>*@
+                    }
+
+                </div>
+                <div class="col-md-7 col-md-offset-1">
+
+                    @using (Html.BeginForm("Registration", "Home", FormMethod.Post, new { id = "frmRegistration", @class = "register-form" }))
+                    {
+                        @Html.AntiForgeryToken()
+
+
+                        <div class="icon-box mb-0 p-0">
+                            <a href="#" class="icon icon-sm pull-left mb-0 mr-10">
+                                <img alt="" src="~/Content/Client/images/flat-color-icons-svg/manager.svg" title="businessman.svg">
+                            </a>
+                            <h4 class="text-gray pt-10 mt-0 mb-30">Don't have a Patient Account? Register Now.</h4>
+                            <hr />
+                        </div>
+                        <div class="row">
+                            <div class="form-group col-md-6">
+                                <label for="FullName">Full Name</label>
+                                @Html.TextBoxFor(s => s.FullName, new { @class = "form-control", @placeholder = "Joe Smith" })
+                            </div>
+                            <div class="form-group col-md-6">
+                                <label>Mobile Number</label>
+                                @Html.TextBoxFor(s => s.Mobile, new { @class = "form-control", @placeholder = "99XXXXXXXX" })
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="form-group col-md-12">
+                                <label>Email Address</label>
+                                @Html.TextBoxFor(s => s.Email, new { @class = "form-control", @placeholder = "you@yours.com" })
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="form-group col-md-6">
+                                <label for="Password">Choose Password</label>
+                                @Html.PasswordFor(s => s.Password, new { @class = "form-control", @id="PassReg", placeholder = "XXXXX" })
+                            </div>
+                            <div class="form-group col-md-6">
+                                <label>Re-enter Password</label>
+                                @Html.Password("RePassword", string.Empty, new { @class = "form-control", placeholder = "XXXXX" })
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <button class="btn btn-dark btn-lg btn-block mt-15" type="submit">Register Now</button>
+                        </div>
+
+                    }
+
+
+                </div>
+            </div>
+        </div>
+    </section>
+</div>
+
+@section Scripts {
+    @Scripts.Render("~/plugins/validate")
+
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $("#frmLogin").validate({
+                rules: {
+                    
+                    Email: {
+                        required: true,
+                        email: true
+                    },
+                    Password: {
+                        required: true
+                    } 
+                }
+            });
+
+            $("#frmRegistration").validate({
+                rules: {
+                    FullName: {
+                        required: true
+                    },
+                    Mobile: {
+                        required: true,
+                        number: true,
+                        minlength: 10,
+                        maxlength :10
+                    },
+                    Email: {
+                        required: true,
+                        email: true
+                    },
+                    Password: {
+                        required: true
+                    },
+                    RePassword: {
+                        required: true,
+                        equalTo: '#PassReg'
+                    }
+                }
+            });
+
+        });
+    </script>
+}

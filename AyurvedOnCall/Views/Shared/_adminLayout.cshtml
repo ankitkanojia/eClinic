@@ -6,6 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <title>@ViewBag.Title</title>
+    <link rel="shortcut icon" type="image/png" href="~/Content/fevicon.ico" />
     <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,300,600,700' rel='stylesheet' type='text/css'>
     <!-- Add local styles, mostly for plugins css file -->
     @if (IsSectionDefined("Styles"))
@@ -72,17 +73,16 @@
     @Scripts.Render("~/plugins/iCheck")
     @Scripts.Render("~/plugins/toastr")
     <style>
-        #toast-container > .toast-error {
-            background-image: none !important;
+        #toast-container > .toast-error{
+            background-image:none !important;
         }
-
         #toast-container > .toast-success {
             background-image: none !important;
         }
     </style>
     <script type="text/javascript">
 
-        function showSuccess(message) {
+        function showSuccess(message) { 
             toastr.options = {
                 "closeButton": true,
                 "progressBar": true,
@@ -91,9 +91,9 @@
                 "showDuration": "400",
                 "hideDuration": "1000",
                 "timeOut": "7000",
-                "extendedTimeOut": "1000",
+                "extendedTimeOut": "1000", 
             }
-            toastr.success(message, "Success");
+            toastr.success(message, "Success"); 
             $('#successMsg').val('');
         }
         function showError(message) {
@@ -101,11 +101,11 @@
                 "closeButton": true,
                 "progressBar": true,
                 "preventDuplicates": true,
-                "positionClass": "toast-top-right",
+                "positionClass": "toast-top-right", 
                 "showDuration": "400",
                 "hideDuration": "1000",
                 "timeOut": "7000",
-                "extendedTimeOut": "1000",
+                "extendedTimeOut": "1000", 
             }
             toastr.error(message, "Error");
             $('#errorMsg').val('');
@@ -113,11 +113,11 @@
 
         $(document).ready(function () {
 
-            if ($('#successMsg').val() != '') {
+            if ($('#successMsg').val() !=   '') {
                 showSuccess($('#successMsg').val());
             }
 
-            if ($('#errorMsg').val() != '') {
+            if ($('#errorMsg').val() !=   '') {
                 showError($('#errorMsg').val());
             }
 
